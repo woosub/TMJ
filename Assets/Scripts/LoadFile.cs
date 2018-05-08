@@ -32,8 +32,8 @@ public class LoadFile : MonoBehaviour
 		GameObject block = CreateBlock (0);
 
 		block.transform.position = startPos;
-
-		Vector3 nextPos = block.transform.Find ("NextPos").position;
+        
+		Vector3 nextPos = tempData[1].ToInt() == 3 ? block.transform.Find("BridgePos").position : block.transform.Find ("NextPos").position;
 
 		ingameBlockList.Add (block);
 
@@ -42,9 +42,13 @@ public class LoadFile : MonoBehaviour
 			block = CreateBlock(tempData[i].ToInt());
 
 			block.transform.position = nextPos;
-			nextPos = block.transform.Find ("NextPos").position;
 
-			ingameBlockList.Add (block);
+            if (i + 1 < tempData.Length)
+            {
+                nextPos = tempData[i + 1].ToInt() == 3 ? block.transform.Find("BridgePos").position : block.transform.Find("NextPos").position;
+            }
+
+            ingameBlockList.Add (block);
 		}
 
 	}

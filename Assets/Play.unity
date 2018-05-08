@@ -168,4 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectResList: []
   mapBlockList:
+  - {fileID: 1908997396027656, guid: 03a6f7c1ea7f40742a9a7ed21e33a0b3, type: 2}
   - {fileID: 1250088571880646, guid: 98d045b54e14948cd9d687621876531f, type: 2}
+  - {fileID: 1988002409646168, guid: 8ea00c5de5ae0094592cb1828945ec69, type: 2}
+  - {fileID: 1719681375537322, guid: 50ddebc807b1bfd4195e3907be086b82, type: 2}

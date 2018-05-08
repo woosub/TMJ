@@ -18,7 +18,7 @@ public class StageMgr : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		DontDestroyOnLoad (gameObject);
+		//DontDestroyOnLoad (gameObject);
 
 		isStart = false;
 

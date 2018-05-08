@@ -269,6 +269,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1439615706528546
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4533835040958990}
+  m_Layer: 0
+  m_Name: BridgePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1464062325087446
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +537,7 @@ Transform:
   - {fileID: 4691634477915664}
   - {fileID: 4411601488476028}
   - {fileID: 4426548369229290}
+  - {fileID: 4533835040958990}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -616,6 +632,19 @@ Transform:
   m_Father: {fileID: 4269156108302360}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4533835040958990
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1439615706528546}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.097, y: 0.047, z: 1.4780006}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4269156108302360}
+  m_RootOrder: 26
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4568232183804750
 Transform:
   m_ObjectHideFlags: 1
@@ -674,7 +703,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1517712992410650}
-  m_LocalRotation: {x: -0, y: 0.4644837, z: -0, w: 0.8855816}
+  m_LocalRotation: {x: -0, y: 0.46448374, z: -0, w: 0.8855817}
   m_LocalPosition: {x: 0.972, y: 0.441, z: -0.482}
   m_LocalScale: {x: 0.1778638, y: 0.17786393, z: 0.17786399}
   m_Children: []

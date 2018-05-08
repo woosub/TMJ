@@ -7,9 +7,10 @@ public class Player : MonoBehaviour {
 	bool isLeft = false;
 	bool isRight = false;
 	bool isJump = false;
+    bool isDown = false;
 
 	const float gravity = -0.08f;
-	const float jumpPower = 0.03f;
+	const float jumpPower = 0.022f;
 
 	const float jumpLimit = 0.3f;
 
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour {
 	static Vector3 startPos = new Vector3 (0, 0.98f, -0.59f);
 	static Vector3 startRot = new Vector3 (0, 0, 0);
 
-	float playSpeed = 0.8f;
+	float playSpeed = 2.0f;
 
 	Transform control;
 	SpriteRenderer character;
@@ -34,7 +35,10 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	float damageFrameTime = 0.05f;
 
-	const int runSpriteLimit = 8;
+    [SerializeField]
+    float slideFrameTime = 0.05f;
+
+    const int runSpriteLimit = 8;
 	int runCount = 0;
 	float runTimer = 0.0f;
 
@@ -54,11 +58,18 @@ public class Player : MonoBehaviour {
 	[SerializeField]
 	Sprite[] damageSprite;
 
-	Transform shadow;
+
+    int slideCount = 0;
+    float slideTimer = 0.0f;
+
+    [SerializeField]
+    Sprite[] slideSprite;
+
+    Transform shadow;
 
 	const float shadowFlat = 0.125f;
 
-	Transform camera;
+	new Transform camera;
 	Transform sky;
 
 	bool isCrash = false;
@@ -68,11 +79,18 @@ public class Player : MonoBehaviour {
 
 	bool isFalling = false;
 
-	const float fallingTime = 1.0f;
+	const float fallingTime = 3.0f;
 	float fallingTimer = 0.0f;
+    
+    const float lineMovelimit = 0.218f;
 
-	// Use this for initialization
-	void Start () {
+    bool isMoveline = false;
+    int lineNum = 0;
+
+    float destVal;
+
+    // Use this for initialization
+    void Start () {
 		sky = transform.Find ("Sky");
 		camera = transform.Find ("Main Camera");
 		control = transform.Find ("Control");
@@ -100,74 +118,139 @@ public class Player : MonoBehaviour {
 		if (!StageMgr.isStart)
 			return;
 
-		RunAnimation ();
-		ShadowAnimation ();
+	
 		CameraPos ();
 		SkyPos ();
 
 		transform.position += Vector3.forward * Time.deltaTime * playSpeed;
 
-		if (isLeft || Input.GetKey(KeyCode.A)) {
+        if (isFalling)
+        {
+            JumpAnimtion();
 
-			if (control.position.x > -0.3f) {
-				control.position += Vector3.left * Time.deltaTime; 
-			}
-		}
+            control.position += Time.deltaTime * Vector3.up * gravity * 20;
 
-		if (isRight || Input.GetKey(KeyCode.D)) {
-			if (control.position.x < 0.3f) {
-				control.position += Vector3.right * Time.deltaTime;
+            fallingTimer += Time.deltaTime;
 
-			}
-		}
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			ControlJump ();
-		}
+            if (fallingTimer >= fallingTime)
+            {
+                StageMgr.isStart = false;
 
-		if (isJump) {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            }
 
-			JumpAnimtion ();
+        }
+        else
+        {
+            RunAnimation();
+            ShadowAnimation();
 
-			jumpVal += gravity * Time.deltaTime; 
-			control.position += new Vector3(0, jumpPower + jumpVal);	
+            if (!isMoveline)
+            {
+                if (Input.GetKey(KeyCode.A))
+                {
+                    ControlLeft();
+                }
 
-			if (control.position.y <= flat) {
-				control.position = new Vector3 (control.position.x, flat, control.position.z);
-				isJump = false;
-			}
-		}
+                if (Input.GetKey(KeyCode.D))
+                {
+                    ControlRight();
+                }
+            }
+            else
+            {
+                if (isLeft)
+                {
+                    if (control.position.x > destVal)
+                    {
+                        control.position += Vector3.left * Time.deltaTime * 1.5f;
+                    }
+                    else
+                    {
+                        isMoveline = false;
+                        isLeft = false;
+                        control.position = new Vector3(destVal, control.position.y, control.position.z);
+                    }
+                }
 
-		if (isCrash) {
-			crashTimer += Time.deltaTime;
+                if (isRight)
+                {
+                    if (control.position.x < destVal)
+                    {
+                        control.position += Vector3.right * Time.deltaTime * 1.5f;
+                    }
+                    else
+                    {
+                        isMoveline = false;
+                        isRight = false;
+                        control.position = new Vector3(destVal, control.position.y, control.position.z);
+                    }
+                }
+            }
 
-			DamageAnimation ();
+            if (!isDown)
+            {
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    isDown = true;
+                    slideTimer = 0.0f;
+                    slideCount = 0;
 
-			if (crashTimer >= crashTime) {
-				isCrash = false;
+                    Invoke("ReleaseSlide", 1.0f);
+                }
+            }
+            else
+            {
+                SlideAnimation();
+            }
 
-				character.enabled = true;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                ControlJump();
+            }
 
-				CancelInvoke ("CrashEffect");
+            if (isJump)
+            {
 
-				playSpeed = 0.8f;
-			}
+                JumpAnimtion();
 
-		}
+                jumpVal += gravity * Time.deltaTime;
+                control.position += new Vector3(0, jumpPower + jumpVal);
 
-		if (isFalling) {
-			control.position += Time.deltaTime * Vector3.down * gravity;
+                if (control.position.y <= flat)
+                {
+                    control.position = new Vector3(control.position.x, flat, control.position.z);
+                    isJump = false;
+                }
+            }
 
-			fallingTimer += Time.deltaTime;
+            if (isCrash)
+            {
+                crashTimer += Time.deltaTime;
 
-			if (fallingTimer >= fallingTime) {
-				StageMgr.isStart = false;
+                DamageAnimation();
 
-				UnityEngine.SceneManagement.SceneManager.LoadScene (0);
-			}
+                if (crashTimer >= crashTime)
+                {
+                    isCrash = false;
 
-		}
+                    character.enabled = true;
+
+                    CancelInvoke("CrashEffect");
+
+                    playSpeed = 2.0f;
+                }
+
+            }
+
+        }
 
 	}
+
+    void ReleaseSlide()
+    {
+        isDown = false;
+    }
 
 	void SkyPos()
 	{
@@ -231,7 +314,23 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	public bool GetCrashState()
+    void SlideAnimation()
+    {
+        character.sprite = slideSprite[slideCount];
+
+        slideTimer += Time.deltaTime;
+
+        if (slideTimer >= slideFrameTime)
+        {
+            slideTimer = 0.0f;
+            slideCount++;
+
+            if (slideCount >= slideSprite.Length)
+                slideCount = 0;
+        }
+    }
+
+    public bool GetCrashState()
 	{
 		return isCrash;
 	}
@@ -255,10 +354,15 @@ public class Player : MonoBehaviour {
 
 	public void Falling()
 	{
-		playSpeed = 0.2f;
+		playSpeed = 0.5f;
+
+        isFalling = true;
 
 		fallingTimer = 0.0f;
-	}
+
+        shadow.gameObject.SetActive(false);
+
+    }
 
 	bool crashEffectFlag = false;
 
@@ -274,13 +378,27 @@ public class Player : MonoBehaviour {
 
 	void ControlLeft()
 	{
-		isLeft = true;
-	}
+        if (lineNum >= 0)
+        {
+            isMoveline = true;
+            isLeft = true;
+
+            destVal = control.position.x - lineMovelimit;
+            lineNum--;
+        }
+    }
 
 	void ControlRight()
 	{
-		isRight = true;
-	}
+        if (lineNum <= 0)
+        {
+            isMoveline = true;
+            isRight = true;
+
+            destVal = control.position.x + lineMovelimit;
+            lineNum++;
+        }
+    }
 
 	void ControlJump()
 	{
