@@ -10,6 +10,7 @@ TextureImporter:
     21300006: trap01_3
     21300008: trap01_4
     21300010: trap01_5
+    21300012: trap01_6
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -124,7 +125,7 @@ TextureImporter:
         width: 270
         height: 399
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +139,7 @@ TextureImporter:
         width: 397
         height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -152,7 +153,7 @@ TextureImporter:
         width: 76
         height: 199
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -166,7 +167,7 @@ TextureImporter:
         width: 78
         height: 196
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,12 +176,12 @@ TextureImporter:
       name: trap01_4
       rect:
         serializedVersion: 2
-        x: 300
-        y: 491
+        x: 301
+        y: 447
         width: 222
-        height: 169
+        height: 199
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -193,6 +194,20 @@ TextureImporter:
         y: 248
         width: 211
         height: 177
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: trap01_6
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 580
+        width: 250
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
