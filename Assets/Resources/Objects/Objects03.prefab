@@ -55,7 +55,7 @@ GameObject:
   - component: {fileID: 4793395300847908}
   - component: {fileID: 212938139275540610}
   - component: {fileID: 65307284513200034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: trap01_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4846579836308830}
   - component: {fileID: 212613783155586532}
   - component: {fileID: 65731026550012276}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: trap01_9
   m_TagString: Untagged
   m_Icon: {fileID: 0}

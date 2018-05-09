@@ -26,6 +26,11 @@ public class StageMgr : MonoBehaviour {
 		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
 	}
 
+	void Awake()
+	{
+		Screen.SetResolution (480, 840, false);		
+	}
+
 	// Use this for initialization
 	void Start () {
 		//DontDestroyOnLoad (gameObject);

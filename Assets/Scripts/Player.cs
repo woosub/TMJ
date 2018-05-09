@@ -227,8 +227,8 @@ public class Player : MonoBehaviour {
 
                 JumpAnimtion();
 
-                jumpVal += gravity * Time.deltaTime;
-                control.position += new Vector3(0, jumpPower + jumpVal);
+				jumpVal += gravity * Time.deltaTime;
+				control.position += new Vector3(0, jumpPower + jumpVal) * Time.deltaTime * 52;
 
                 if (control.position.y <= flat)
                 {
