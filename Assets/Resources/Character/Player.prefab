@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1452539e3ed7b4c1eb58e2269e6ce084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runFrameTime: 0.07
+  runFrameTime: 0.05
   jumpFrameTime: 0.1
   damageFrameTime: 0.05
   slideFrameTime: 0.05
