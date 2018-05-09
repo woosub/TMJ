@@ -193,10 +193,10 @@ TextureImporter:
       name: trap01_5
       rect:
         serializedVersion: 2
-        x: 307
-        y: 248
-        width: 211
-        height: 177
+        x: 303
+        y: 260
+        width: 201
+        height: 149
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -207,10 +207,10 @@ TextureImporter:
       name: trap01_6
       rect:
         serializedVersion: 2
-        x: 759
-        y: 580
+        x: 771
+        y: 621
         width: 250
-        height: 425
+        height: 384
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,10 +221,10 @@ TextureImporter:
       name: trap01_7
       rect:
         serializedVersion: 2
-        x: 780
-        y: 181
-        width: 196
-        height: 336
+        x: 802
+        y: 217
+        width: 162
+        height: 299
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -235,12 +235,12 @@ TextureImporter:
       name: trap01_8
       rect:
         serializedVersion: 2
-        x: 76
-        y: 15
-        width: 414
-        height: 222
+        x: 107
+        y: 48
+        width: 387
+        height: 184
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: trap01_9
       rect:
         serializedVersion: 2
-        x: 525
-        y: 29
-        width: 487
-        height: 132
+        x: 562
+        y: 33
+        width: 436
+        height: 103
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
