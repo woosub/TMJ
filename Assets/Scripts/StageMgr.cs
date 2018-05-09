@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StageMgr : MonoBehaviour {
+
+
+	public Button button;
+
 
 	public GameObject[] block;
 
@@ -16,9 +21,16 @@ public class StageMgr : MonoBehaviour {
 	GameObject player;
 	//const int 
 
+	public void Replay()
+	{
+		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
+	}
+
 	// Use this for initialization
 	void Start () {
 		//DontDestroyOnLoad (gameObject);
+
+		button.gameObject.SetActive (false);
 
 		isStart = false;
 
@@ -66,7 +78,7 @@ public class StageMgr : MonoBehaviour {
 		SpriteRenderer[] allSprite = FindObjectsOfType<SpriteRenderer> ();
 
 		for (int i = 0; i < allSprite.Length; i++) {
-			if (allSprite [i].gameObject.layer == LayerMask.NameToLayer ("Default")) {
+			if (allSprite [i].gameObject.layer != LayerMask.NameToLayer ("Water")) {
 				bgSpriteList.Add (allSprite [i]);
 			}
 		}
@@ -80,5 +92,10 @@ public class StageMgr : MonoBehaviour {
 		yield return new WaitForSeconds (0.5f);
 
 		isStart = true;
+	}
+
+	public void Finish()
+	{
+		button.gameObject.SetActive (true);
 	}
 }

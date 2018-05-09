@@ -12,6 +12,8 @@ public class LoadFile : MonoBehaviour
 
 	List<GameObject> ingameBlockList;
 
+	List<GameObject> objectList;
+
 	Vector3 startPos = Vector3.zero;
 
 	const int maxObjectCnt = 5;
@@ -22,6 +24,7 @@ public class LoadFile : MonoBehaviour
 	public void LoadMap()
 	{
 		ingameBlockList = new List<GameObject> ();
+		objectList = new List<GameObject> ();
 
 		string data = string.Empty;
 
@@ -30,6 +33,7 @@ public class LoadFile : MonoBehaviour
 		string[] tempData = data.Split (new string[] { "," }, System.StringSplitOptions.None);
 
 		GameObject block = CreateBlock (0);
+		GameObject objects = null;
 
 		block.transform.position = startPos;
         
@@ -48,57 +52,42 @@ public class LoadFile : MonoBehaviour
                 nextPos = tempData[i + 1].ToInt() == 3 ? block.transform.Find("BridgePos").position : block.transform.Find("NextPos").position;
             }
 
+			if (tempData [i].ToInt () != 3) 
+			{
+				if (i < tempData.Length - 1) {
+					objects = Instantiate (objectResList [Random.Range (0, objectResList.Count - 1)]);
+
+				} else {
+					objects = Instantiate (objectResList [objectResList.Count - 1]);
+				}
+				objects.transform.position = block.transform.position;
+				objectList.Add (objects);
+			}
+
             ingameBlockList.Add (block);
 		}
 
 	}
 
-	public void LoadObjects()
-	{
-		GameObject block;
-
-		for (int i = 0; i < ingameBlockList.Count; i++) {
-			block = ingameBlockList [i];
-
-			Transform[] trs = block.transform.Find ("Objects").GetComponents<Transform> ();
-
-			int[] indexArrary = GetRandomIndex (trs);
-
-			for (int j = 0; j < indexArrary.Length; j++) {
-
-				GameObject obj = Instantiate(objectResList[Random.Range(0, maxObjectNum)]);
-				obj.transform.position = trs [indexArrary [j]].transform.position;
-				
-			}
-		}
-	}
-
-	int[] GetRandomIndex(Transform[] trs)
-	{
-		int cnt = trs.Length;
-
-		List<int> list = new List<int> ();
-		List<int> valList = new List<int>();
-
-		int ran;
-
-		for (int i = 0; i < cnt; i++) {
-			list.Add (i);
-		}
-
-		for (int i = 0; i < maxObjectCnt; i++) {
-
-			ran = Random.Range (0, list.Count);
-
-			valList.Add (list [ran]);
-
-			list.RemoveAt (ran);
-
-		}
-
-		return valList.ToArray ();
-
-	}
+//	public void LoadObjects()
+//	{
+//		GameObject block;
+//
+//		for (int i = 0; i < ingameBlockList.Count; i++) {
+//			block = ingameBlockList [i];
+//
+//			Transform[] trs = block.transform.Find ("Objects").GetComponents<Transform> ();
+//
+//			int[] indexArrary = GetRandomIndex (trs);
+//
+//			for (int j = 0; j < indexArrary.Length; j++) {
+//
+//				GameObject obj = Instantiate(objectResList[Random.Range(0, maxObjectNum)]);
+//				obj.transform.position = trs [indexArrary [j]].transform.position;
+//				
+//			}
+//		}
+//	}
 
 	GameObject CreateBlock(int listCnt)
 	{

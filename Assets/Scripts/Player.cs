@@ -10,7 +10,7 @@ public class Player : MonoBehaviour {
     bool isDown = false;
 
 	const float gravity = -0.08f;
-	const float jumpPower = 0.022f;
+	const float jumpPower = 0.0225f;
 
 	const float jumpLimit = 0.3f;
 
@@ -74,7 +74,7 @@ public class Player : MonoBehaviour {
 
 	bool isCrash = false;
 
-	const float crashTime = 2.0f;
+	const float crashTime = 1.0f;
 	float crashTimer = 0.0f;
 
 	bool isFalling = false;
@@ -82,12 +82,17 @@ public class Player : MonoBehaviour {
 	const float fallingTime = 3.0f;
 	float fallingTimer = 0.0f;
     
-    const float lineMovelimit = 0.218f;
+    const float lineMovelimit = 0.228f;
 
     bool isMoveline = false;
     int lineNum = 0;
 
     float destVal;
+
+	public bool GetSlideState()
+	{
+		return isDown;
+	}
 
     // Use this for initialization
     void Start () {
@@ -129,6 +134,14 @@ public class Player : MonoBehaviour {
             JumpAnimtion();
 
             control.position += Time.deltaTime * Vector3.up * gravity * 20;
+
+			if (isRight) {
+				control.position += Time.deltaTime * Vector3.right * 0.4f;
+			}
+			if (isLeft) {
+				control.position += Time.deltaTime * Vector3.left * 0.4f;
+			}
+
 
             fallingTimer += Time.deltaTime;
 
@@ -196,7 +209,7 @@ public class Player : MonoBehaviour {
                     slideTimer = 0.0f;
                     slideCount = 0;
 
-                    Invoke("ReleaseSlide", 1.0f);
+                    Invoke("ReleaseSlide", 0.3f);
                 }
             }
             else
@@ -204,7 +217,7 @@ public class Player : MonoBehaviour {
                 SlideAnimation();
             }
 
-            if (Input.GetKeyDown(KeyCode.Space))
+			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
             {
                 ControlJump();
             }
@@ -364,11 +377,12 @@ public class Player : MonoBehaviour {
 
     }
 
+
 	bool crashEffectFlag = false;
 
 	void CrashEffect()
 	{
-		playSpeed += 0.05f;
+		playSpeed += 0.02f;
 
 		crashEffectFlag = !crashEffectFlag;
 
