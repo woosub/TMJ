@@ -7,7 +7,7 @@ TextureImporter:
     21300000: Cogi_Damage_0
     21300002: Cogi_Damage_2
     21300004: Cogi_Slide
-    21300006: Cogi_Jump_3
+    21300006: Cogi_GetCard
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -156,7 +156,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Cogi_Jump_3
+      name: Cogi_GetCard
       rect:
         serializedVersion: 2
         x: 768
