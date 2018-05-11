@@ -89,6 +89,8 @@ public class Player : MonoBehaviour {
 
     float destVal;
 
+    StageMgr sm;
+
 	public bool GetSlideState()
 	{
 		return isDown;
@@ -103,7 +105,10 @@ public class Player : MonoBehaviour {
 		flat = control.transform.position.y;
 
 		shadow = transform.Find ("Shadow");
-	}
+
+        sm = FindObjectOfType<StageMgr>();
+
+    }
 
 	public static GameObject LoadPlayer()
 	{
@@ -129,6 +134,8 @@ public class Player : MonoBehaviour {
 
 		transform.position += Vector3.forward * Time.deltaTime * playSpeed;
 
+        sm.CalcMeter(Time.deltaTime * playSpeed);
+
         if (isFalling)
         {
             JumpAnimtion();
@@ -149,7 +156,7 @@ public class Player : MonoBehaviour {
             {
                 StageMgr.isStart = false;
 
-                UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             }
 
         }

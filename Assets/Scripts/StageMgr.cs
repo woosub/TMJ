@@ -17,13 +17,61 @@ public class StageMgr : MonoBehaviour {
 
 
 	List<SpriteRenderer> bgSpriteList = new List<SpriteRenderer> ();
+    List<SpriteRenderer> coinSpriteList = new List<SpriteRenderer>();
+
+    int getCardCount = 0;
 
 	GameObject player;
-	//const int 
+    //const int 
+
+    [SerializeField]
+    Sprite[] cardCaptureSprite;
+
+    [SerializeField]
+    Sprite[] getCardsSprite;
+
+    [SerializeField]
+    Sprite[] GameOver;
+
+    [SerializeField]
+    Sprite[] counts;
+
+    [SerializeField]
+    Image[] playTimer;
+
+    [SerializeField]
+    Image[] meter;
+
+    [SerializeField]
+    Image[] getCards;
+
+    [SerializeField]
+    Image gauge;
+
+    [SerializeField]
+    Image cardCapture;
+
+    [SerializeField]
+    GameObject FinishUI;
+
+    [SerializeField]
+    GameObject CardRes;
+
+    [SerializeField]
+    GameObject Coin;
+
+    GameObject CardObj;
+
+    [SerializeField]
+    int CardGaugeLimit = 30;
+
+    int cardGauge = 0;
+
+    float playTime = 60f;
 
 	public void Replay()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene (0);
+		UnityEngine.SceneManagement.SceneManager.LoadScene (1);
 	}
 
 	void Awake()
@@ -33,27 +81,60 @@ public class StageMgr : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//DontDestroyOnLoad (gameObject);
+        //DontDestroyOnLoad (gameObject);
+        goalDistance = 100f;
+        getCardCount = 0;
 
-		button.gameObject.SetActive (false);
+        button.gameObject.SetActive (false);
 
 		isStart = false;
 
 		bgSpriteList = new List<SpriteRenderer> ();
+        coinSpriteList = new List<SpriteRenderer>();
 
-		loadFile = FindObjectOfType<LoadFile> ();
+        loadFile = FindObjectOfType<LoadFile> ();
 
-		//Test
-		LoadData ();
+        CardObj = Instantiate(CardRes);
+        CardObj.SetActive(false);
+
+        FinishUI.SetActive(false);
+        //Test
+        LoadData ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (!isStart)
 			return;
-		
-		SpriteSorting ();
+
+        playTime -= Time.deltaTime;
+
+
+        if (playTime > 0)
+        {
+            playTimer[0].sprite = counts[((int)playTime % 10)];
+            playTimer[1].sprite = counts[((int)playTime / 10)];
+        }
+        else
+        {
+            playTimer[0].sprite = counts[0];
+            playTimer[1].sprite = counts[0];
+
+            TimeOver();
+        }
+
+        SpriteSorting ();
 	}
+
+    void TimeOver()
+    {
+        isStart = false;
+
+        FinishUI.SetActive(true);
+        FinishUI.GetComponent<Image>().sprite = GameOver[1];
+
+        button.gameObject.SetActive(true);
+    }
 
 	void SpriteSorting()
 	{
@@ -83,14 +164,28 @@ public class StageMgr : MonoBehaviour {
 		SpriteRenderer[] allSprite = FindObjectsOfType<SpriteRenderer> ();
 
 		for (int i = 0; i < allSprite.Length; i++) {
-			if (allSprite [i].gameObject.layer != LayerMask.NameToLayer ("Water")) {
+			if (allSprite [i].gameObject.layer != LayerMask.NameToLayer ("Water") &&
+                allSprite[i].gameObject.layer != LayerMask.NameToLayer("Coin")) {
 				bgSpriteList.Add (allSprite [i]);
 			}
 		}
 
+        for (int i = 0; i < allSprite.Length; i++)
+        {
+            if (allSprite[i].gameObject.layer == LayerMask.NameToLayer("Coin"))
+                coinSpriteList.Add(allSprite[i]);
+        }
+
 		StartCoroutine (PlayStart ());
 	}
 
+    void CoinsActive(bool flag)
+    {
+        for (int i = 0; i < coinSpriteList.Count; i++)
+        {
+            coinSpriteList[i].gameObject.SetActive(flag);
+        }
+    }
 
 	IEnumerator PlayStart()
 	{
@@ -101,6 +196,54 @@ public class StageMgr : MonoBehaviour {
 
 	public void Finish()
 	{
-		button.gameObject.SetActive (true);
+        FinishUI.SetActive(true);
+        button.gameObject.SetActive (true);
 	}
+
+    public void CardGaugeUp()
+    {
+        cardGauge++;
+
+        gauge.fillAmount = cardGauge / (float)CardGaugeLimit;
+
+        if (CardGaugeLimit <= cardGauge)
+        {
+            cardGauge = 0;
+            cardCapture.sprite = cardCaptureSprite[1];
+            //카드 생성
+            CardObj.SetActive(true);
+            CardObj.transform.parent = player.transform.parent.Find("Card_" + Random.Range(0, 3));
+            CardObj.transform.localPosition = Vector3.zero;
+            //>
+
+            CoinsActive(false);
+        }
+    }
+
+    public void CardCapture()
+    {
+        CoinsActive(true);
+
+        gauge.fillAmount = 0;
+        cardCapture.sprite = cardCaptureSprite[0];
+
+        getCards[getCardCount].sprite = getCardsSprite[1];
+
+        getCardCount++;
+
+        if (getCardCount > 3)
+            getCardCount = 3;
+    }
+
+    float goalDistance = 100f;
+
+    public void CalcMeter(float distance)
+    {
+        goalDistance -= distance;
+
+        meter[0].sprite = counts[(int)goalDistance % 10];
+        meter[1].sprite = counts[(int)goalDistance / 10 % 10];
+        meter[2].sprite = counts[(int)goalDistance / 100 % 10];
+        meter[3].sprite = counts[(int)goalDistance / 1000];
+    }
 }
