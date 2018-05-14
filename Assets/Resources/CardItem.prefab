@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212286169725006186}
   - component: {fileID: 65503316202655498}
   - component: {fileID: 114066636794414580}
+  - component: {fileID: 111781285111705476}
   m_Layer: 13
   m_Name: CardItem
   m_TagString: Untagged
@@ -52,8 +53,23 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28, z: 4}
+  m_Size: {x: 1, y: 1, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!111 &111781285111705476
+Animation:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1297427731237208}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations:
+  - {fileID: 0}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!114 &114066636794414580
 MonoBehaviour:
   m_ObjectHideFlags: 1

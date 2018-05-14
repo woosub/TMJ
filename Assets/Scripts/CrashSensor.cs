@@ -47,6 +47,7 @@ public class CrashSensor : MonoBehaviour
         {
             sm.CardGaugeUp();
             other.gameObject.SetActive(false);
+			p.CoinGetEffect ();
             //Destroy(other.gameObject);
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Card"))

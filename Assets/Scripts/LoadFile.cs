@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class LoadFile : MonoBehaviour
 {
+	static LoadFile m_this;
+
 	[SerializeField]
 	List<GameObject> objectResList;
 
@@ -14,17 +16,27 @@ public class LoadFile : MonoBehaviour
 
 	List<GameObject> objectList;
 
-	Vector3 startPos = Vector3.zero;
+	List<RegionData> regionList = new List<RegionData>();
+
+	//Vector3 startPos = Vector3.zero;
 
 	const int maxObjectCnt = 5;
 	const int maxObjectNum = 5;
 
 	const int maxBlockNum = 5;
 
-	public void LoadMap()
+	public static List<RegionData> GetRegionList
 	{
-		ingameBlockList = new List<GameObject> ();
-		objectList = new List<GameObject> ();
+		get
+		{
+			return m_this.regionList;
+		}
+	}
+
+	public static void LoadMap()
+	{
+		m_this.ingameBlockList = new List<GameObject> ();
+		m_this.objectList = new List<GameObject> ();
 
 		string data = string.Empty;
 
@@ -35,11 +47,11 @@ public class LoadFile : MonoBehaviour
 		GameObject block = CreateBlock (0);
 		GameObject objects = null;
 
-		block.transform.position = startPos;
+		block.transform.position = Vector3.zero;
         
 		Vector3 nextPos = tempData[1].ToInt() == 3 ? block.transform.Find("BridgePos").position : block.transform.Find ("NextPos").position;
 
-		ingameBlockList.Add (block);
+		m_this.ingameBlockList.Add (block);
 
 		for (int i = 1; i < tempData.Length; i++) {
 			
@@ -55,18 +67,48 @@ public class LoadFile : MonoBehaviour
 			if (tempData [i].ToInt () != 3) 
 			{
 				if (i < tempData.Length - 1) {
-					objects = Instantiate (objectResList [Random.Range (0, objectResList.Count - 1)]);
+					objects = Instantiate (m_this.objectResList [Random.Range (0, m_this.objectResList.Count - 1)]);
 
 				} else {
-					objects = Instantiate (objectResList [objectResList.Count - 1]);
+					objects = Instantiate (m_this.objectResList [m_this.objectResList.Count - 1]);
 				}
 				objects.transform.position = block.transform.position;
-				objectList.Add (objects);
+				m_this.objectList.Add (objects);
 			}
 
-            ingameBlockList.Add (block);
+			m_this.ingameBlockList.Add (block);
 		}
 
+	}
+
+	public static void LoadRegionInfo()
+	{
+		string text = Resources.Load<TextAsset> ("RegionData").text;
+
+		string[] data = text.Split (new string[] { "\n" }, System.StringSplitOptions.None);
+		string[] temp;
+
+		for (int i = 0; i < data.Length; i++) {
+			temp = data [i].Split (new string[] { "," }, System.StringSplitOptions.None);
+
+			int cnt = 0;
+			RegionData rData = new RegionData ();
+			rData.nameList = new List<string> ();
+
+			for (int j = 0; j < temp.Length; j++) {
+
+				if (cnt == 0) {
+					rData.index = temp [cnt].ToInt ();
+				} else if (cnt == 1) {
+					rData.region = temp [cnt];
+				} else {
+					rData.nameList.Add (temp [cnt]);
+				}
+				cnt++;
+			}
+
+			m_this.regionList.Add (rData);
+		}
 	}
 
 //	public void LoadObjects()
@@ -89,9 +131,9 @@ public class LoadFile : MonoBehaviour
 //		}
 //	}
 
-	GameObject CreateBlock(int listCnt)
+	static GameObject CreateBlock(int listCnt)
 	{
-		return Instantiate(mapBlockList [listCnt]);
+		return Instantiate(m_this.mapBlockList [listCnt]);
 
 		//return Instantiate (obj);
 	}
@@ -99,7 +141,9 @@ public class LoadFile : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		
+		m_this = this;
+
+		DontDestroyOnLoad (gameObject);
 	}
 	
 	// Update is called once per frame
@@ -109,5 +153,12 @@ public class LoadFile : MonoBehaviour
 	}
 
 
+}
+
+public struct RegionData
+{
+	public int index;
+	public string region;
+	public List<string> nameList;
 }
 

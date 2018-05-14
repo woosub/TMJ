@@ -14,14 +14,19 @@ public class CardItem : MonoBehaviour {
 
     float timer = 0.0f;
 
+
     void OnEnable()
     {
         isActive = true;
+		if(GetComponent<Animation>().clip != null)
+			GetComponent<Animation> ().Play ();
     }
 
     void OnDisable()
     {
         isActive = false;
+		if(GetComponent<Animation>().clip != null)
+			GetComponent<Animation> ().Stop ();
     }
 
 	// Use this for initialization

@@ -11,8 +11,6 @@ public class StageMgr : MonoBehaviour {
 
 	public GameObject[] block;
 
-	LoadFile loadFile;
-
 	public static bool isStart;
 
 
@@ -51,6 +49,9 @@ public class StageMgr : MonoBehaviour {
     [SerializeField]
     Image cardCapture;
 
+	[SerializeField]
+	GameObject cardEffect;
+
     [SerializeField]
     GameObject FinishUI;
 
@@ -80,8 +81,10 @@ public class StageMgr : MonoBehaviour {
 	}
 
 	// Use this for initialization
-	void Start () {
+	IEnumerator Start () {
         //DontDestroyOnLoad (gameObject);
+
+		CardEffectOff ();
         goalDistance = 100f;
         getCardCount = 0;
 
@@ -92,12 +95,12 @@ public class StageMgr : MonoBehaviour {
 		bgSpriteList = new List<SpriteRenderer> ();
         coinSpriteList = new List<SpriteRenderer>();
 
-        loadFile = FindObjectOfType<LoadFile> ();
-
         CardObj = Instantiate(CardRes);
         CardObj.SetActive(false);
 
         FinishUI.SetActive(false);
+
+		yield return new WaitForSeconds (0.05f);
         //Test
         LoadData ();
 	}
@@ -153,7 +156,7 @@ public class StageMgr : MonoBehaviour {
 	public void LoadData()
 	{
 		//맵
-		loadFile.LoadMap ();
+		LoadFile.LoadMap ();
 
 		//플레이어 캐릭터
 		player = Player.LoadPlayer ().transform.Find("Control").gameObject;
@@ -210,15 +213,41 @@ public class StageMgr : MonoBehaviour {
         {
             cardGauge = 0;
             cardCapture.sprite = cardCaptureSprite[1];
+
+			cardEffect.SetActive (true);
+			Invoke ("CardEffectOff", 0.2f);
+
             //카드 생성
             CardObj.SetActive(true);
             CardObj.transform.parent = player.transform.parent.Find("Card_" + Random.Range(0, 3));
-            CardObj.transform.localPosition = Vector3.zero;
+			CardObj.transform.localPosition = Vector3.forward * 2;
             //>
+
+			StartCoroutine (MovingCard ());
 
             CoinsActive(false);
         }
     }
+
+	IEnumerator MovingCard()
+	{
+		float f = 0.0f;
+		while (true) {
+			yield return null;
+			f += Time.deltaTime;
+			CardObj.transform.localPosition = Vector3.Lerp (Vector3.forward * 2, Vector3.zero, f);
+
+			if (f >= 1.0f)
+				break;
+		}
+
+		CardObj.transform.localPosition = Vector3.zero;
+	}
+
+	void CardEffectOff()
+	{
+		cardEffect.SetActive (false);
+	}
 
     public void CardCapture()
     {

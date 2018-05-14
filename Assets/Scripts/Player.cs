@@ -91,6 +91,12 @@ public class Player : MonoBehaviour {
 
     StageMgr sm;
 
+	[SerializeField]
+	GameObject coinEffect;
+
+	[SerializeField]
+	float coinEffectTime = 0.1f;
+
 	public bool GetSlideState()
 	{
 		return isDown;
@@ -98,6 +104,9 @@ public class Player : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+		coinEffect.SetActive (false);
+
 		sky = transform.Find ("Sky");
 		camera = transform.Find ("Main Camera");
 		control = transform.Find ("Control");
@@ -429,5 +438,18 @@ public class Player : MonoBehaviour {
 		isJump = true;
 
 		jumpVal = 0.0f;
+	}
+
+	public void CoinGetEffect()
+	{
+		coinEffect.SetActive (true);
+
+		CancelInvoke ("CoinEffectOff");
+		Invoke ("CoinEffectOff", coinEffectTime);
+	}
+
+	void CoinEffectOff()
+	{
+		coinEffect.SetActive (false);
 	}
 }
