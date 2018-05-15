@@ -190,13 +190,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1475619412686460}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.046, z: 0}
-  m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
+  m_LocalRotation: {x: 0.3136119, y: -0, z: -0, w: 0.9495513}
+  m_LocalPosition: {x: 0, y: -0.058, z: 0.037}
+  m_LocalScale: {x: 0.09073137, y: 0.09073137, z: 0.09073137}
   m_Children: []
   m_Father: {fileID: 4592498320714138}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 36.554, y: 0, z: 0}
 --- !u!4 &4308153994939910
 Transform:
   m_ObjectHideFlags: 1
@@ -290,26 +290,26 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1929588085243638}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0382, z: 0}
+  m_LocalRotation: {x: 0.14982082, y: -0, z: -0, w: 0.9887132}
+  m_LocalPosition: {x: 0, y: -0.0382, z: 0.008}
   m_LocalScale: {x: 0.046157353, y: 0.046157353, z: 0.046157353}
   m_Children: []
   m_Father: {fileID: 4592498320714138}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 17.233002, y: 0, z: 0}
 --- !u!4 &4877513227418142
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1339862329439910}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.48830003, z: -0.82400006}
+  m_LocalRotation: {x: 0.14269137, y: -0, z: -0, w: 0.98976725}
+  m_LocalPosition: {x: 0, y: -0.355, z: -0.787}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children: []
   m_Father: {fileID: 4727222480790192}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.407001, y: 0, z: 0}
 --- !u!20 &20044089773725814
 Camera:
   m_ObjectHideFlags: 1
@@ -328,7 +328,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

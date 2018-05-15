@@ -116,12 +116,12 @@ TextureImporter:
       name: BGfarrange_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 604
-        width: 592
-        height: 419
+        x: 6
+        y: 314
+        width: 274
+        height: 189
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -130,26 +130,12 @@ TextureImporter:
       name: BGfarrange_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 349
-        width: 691
-        height: 253
+        x: 22
+        y: 201
+        width: 282
+        height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGfarrange_2
-      rect:
-        serializedVersion: 2
-        x: 420
-        y: 0
-        width: 604
-        height: 247
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
