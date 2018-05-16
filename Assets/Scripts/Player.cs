@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	bool isRight = false;
 	bool isJump = false;
     bool isDown = false;
+    bool isGetCard = false;
 
 	const float gravity = -0.08f;
 	const float jumpPower = 0.0225f;
@@ -135,8 +136,6 @@ public class Player : MonoBehaviour {
         
         if (isFalling)
         {
-            JumpAnimtion();
-
             control.position += Time.deltaTime * Vector3.up * gravity * 20;
 
 			if (isRight) {
@@ -278,7 +277,7 @@ public class Player : MonoBehaviour {
 
 	void RunAnimation()
 	{
-        if (isCrash || isJump || isDown || isFalling)
+        if (isCrash || isJump || isDown || isFalling || isGetCard)
             return;
 
 		character.sprite = runSprite[runCount];
@@ -296,7 +295,7 @@ public class Player : MonoBehaviour {
 
 	void JumpAnimtion()
 	{
-        if (isCrash || isFalling)
+        if (isCrash || isFalling || isGetCard)
             return;
 
         character.sprite = jumpSprite [jumpCount];
@@ -406,6 +405,19 @@ public class Player : MonoBehaviour {
 
 		jumpVal = 0.0f;
 	}
+
+    public void PlayerGetCard()
+    {
+        isGetCard = true;
+        character.sprite = etcSprite[2];
+
+        Invoke("InvokeGetcardOff", 0.35f);
+    }
+
+    void InvokeGetcardOff()
+    {
+        isGetCard = false;
+    }
 
 	public void CoinGetEffect()
 	{

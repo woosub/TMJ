@@ -57,6 +57,7 @@ public class CrashSensor : MonoBehaviour
             other.transform.parent.SetParent(p.transform.Find("Main Camera/CardDest"));
             other.transform.GetComponent<CardItem>().MoveCard();
 
+            p.PlayerGetCard();
             sm.CardCapture();
         }
     }
