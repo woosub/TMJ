@@ -51,6 +51,8 @@ public class CardItem : MonoBehaviour {
 
         curPos = transform.parent.localPosition;
         curScale = transform.parent.localScale;
+
+        sr.sprite = CardSprite[4];
     }
 
     // Update is called once per frame
@@ -58,28 +60,12 @@ public class CardItem : MonoBehaviour {
         if (!isActive)
             return;
 
-        timer += Time.deltaTime;
-
-        if (timer >= 0.2f)
-        {
-            timer = 0.0f;
-
-            cnt++;
-
-            if (cnt > 3)
-            {
-                cnt = 0;
-            }
-        }
-
-        sr.sprite = CardSprite[cnt];
-
         if (isMoving)
         {
             moveVal += Time.deltaTime * moveSpeed;
             transform.parent.localPosition = Vector3.Lerp(curPos, Vector3.zero, moveVal);
             transform.parent.localScale = Vector3.Lerp(curScale, destScale, moveVal);
-            sr.color -= new Color(0,0,0,Time.deltaTime * 0.6f);
+            sr.color -= new Color(0, 0, 0, Time.deltaTime * 0.6f);
 
             if (moveVal >= 1.0f)
             {
@@ -90,6 +76,26 @@ public class CardItem : MonoBehaviour {
 
                 isMoving = false;
             }
+        }
+        else
+        {
+
+            timer += Time.deltaTime;
+
+            if (timer >= 0.2f)
+            {
+                timer = 0.0f;
+
+                cnt++;
+
+                if (cnt > 3)
+                {
+                    cnt = 0;
+                }
+            }
+
+            sr.sprite = CardSprite[cnt];
+
         }
     }
 }
