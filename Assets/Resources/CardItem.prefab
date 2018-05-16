@@ -115,6 +115,7 @@ MonoBehaviour:
   - {fileID: 21300008, guid: f41a65009189a9a499b80a4f7295be3f, type: 3}
   - {fileID: 21300010, guid: f41a65009189a9a499b80a4f7295be3f, type: 3}
   - {fileID: 21300012, guid: f41a65009189a9a499b80a4f7295be3f, type: 3}
+  - {fileID: 21300010, guid: f41a65009189a9a499b80a4f7295be3f, type: 3}
   - {fileID: 21300014, guid: f41a65009189a9a499b80a4f7295be3f, type: 3}
 --- !u!212 &212346816119376202
 SpriteRenderer:
