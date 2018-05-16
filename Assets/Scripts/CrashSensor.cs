@@ -52,7 +52,10 @@ public class CrashSensor : MonoBehaviour
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Card"))
         {
-            other.gameObject.SetActive(false);
+            //other.transform.parent.gameObject.SetActive(false);
+
+            other.transform.parent.SetParent(p.transform.Find("Main Camera/CardDest"));
+            other.transform.GetComponent<CardItem>().MoveCard();
 
             sm.CardCapture();
         }

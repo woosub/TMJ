@@ -51,25 +51,19 @@ public class Player : MonoBehaviour {
 
 	[SerializeField]
 	Sprite[] jumpSprite;
-
-	int damageCount = 0;
-	float damageTimer = 0.0f;
-
+    
 	[SerializeField]
-	Sprite[] damageSprite;
-
-
-    int slideCount = 0;
-    float slideTimer = 0.0f;
-
-    [SerializeField]
-    Sprite[] slideSprite;
-
+	Sprite[] etcSprite;
+    
     Transform shadow;
 
 	const float shadowFlat = 0.125f;
 
 	new Transform camera;
+
+    Vector3 camCurPos;
+    Vector3 camDestPos;
+
 	Transform sky;
 
 	bool isCrash = false;
@@ -87,7 +81,9 @@ public class Player : MonoBehaviour {
     bool isMoveline = false;
     int lineNum = 0;
 
-    float destVal;
+    Vector3 destVal;
+    Vector3 curVal;
+    float sideMoveVal;
 
     StageMgr sm;
 
@@ -136,15 +132,7 @@ public class Player : MonoBehaviour {
 
 		if (!StageMgr.isStart)
 			return;
-
-	
-		CameraPos ();
-		SkyPos ();
-
-		transform.position += Vector3.forward * Time.deltaTime * playSpeed;
-
-        sm.CalcMeter(Time.deltaTime * playSpeed);
-
+        
         if (isFalling)
         {
             JumpAnimtion();
@@ -171,8 +159,14 @@ public class Player : MonoBehaviour {
         }
         else
         {
+            SkyPos();
+            CameraPos();
             RunAnimation();
             ShadowAnimation();
+
+            transform.position += Vector3.forward * Time.deltaTime * playSpeed;
+
+            sm.CalcMeter(Time.deltaTime * playSpeed);
 
             if (!isMoveline)
             {
@@ -188,49 +182,32 @@ public class Player : MonoBehaviour {
             }
             else
             {
-                if (isLeft)
+                sideMoveVal += Time.deltaTime * 6f;
+                Vector3 moveVal = Vector3.Lerp(curVal, destVal, sideMoveVal);
+                if (1.0f > sideMoveVal)
                 {
-                    if (control.position.x > destVal)
-                    {
-                        control.position += Vector3.left * Time.deltaTime * 1.5f;
-                    }
-                    else
-                    {
-                        isMoveline = false;
-                        isLeft = false;
-                        control.position = new Vector3(destVal, control.position.y, control.position.z);
-                    }
+                    control.localPosition = new Vector3(moveVal.x, control.localPosition.y);
                 }
-
-                if (isRight)
+                else
                 {
-                    if (control.position.x < destVal)
-                    {
-                        control.position += Vector3.right * Time.deltaTime * 1.5f;
-                    }
-                    else
-                    {
-                        isMoveline = false;
-                        isRight = false;
-                        control.position = new Vector3(destVal, control.position.y, control.position.z);
-                    }
+                    isMoveline = false;
+                    isLeft = false;
+                    control.localPosition = new Vector3(destVal.x, control.localPosition.y);
+                    camera.localPosition = camDestPos;
                 }
             }
 
-            if (!isDown)
+            if (!isDown && !isJump)
             {
                 if (Input.GetKeyDown(KeyCode.S))
                 {
                     isDown = true;
-                    slideTimer = 0.0f;
-                    slideCount = 0;
+
+                    character.sprite = etcSprite[3];
+
 
                     Invoke("ReleaseSlide", 0.3f);
                 }
-            }
-            else
-            {
-                SlideAnimation();
             }
 
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
@@ -256,9 +233,7 @@ public class Player : MonoBehaviour {
             if (isCrash)
             {
                 crashTimer += Time.deltaTime;
-
-                DamageAnimation();
-
+                
                 if (crashTimer >= crashTime)
                 {
                     isCrash = false;
@@ -288,7 +263,10 @@ public class Player : MonoBehaviour {
 
 	void CameraPos()
 	{
-		camera.position = new Vector3 (control.position.x, camera.position.y, camera.position.z);
+        if (!isMoveline)
+            return;
+
+        camera.localPosition = Vector3.Lerp(camCurPos, camDestPos, sideMoveVal);
 	}
 
 	void ShadowAnimation()
@@ -300,6 +278,9 @@ public class Player : MonoBehaviour {
 
 	void RunAnimation()
 	{
+        if (isCrash || isJump || isDown || isFalling)
+            return;
+
 		character.sprite = runSprite[runCount];
 
 		runTimer += Time.deltaTime;
@@ -315,7 +296,10 @@ public class Player : MonoBehaviour {
 
 	void JumpAnimtion()
 	{
-		character.sprite = jumpSprite [jumpCount];
+        if (isCrash || isFalling)
+            return;
+
+        character.sprite = jumpSprite [jumpCount];
 
 		jumpTimer += Time.deltaTime;
 
@@ -327,38 +311,7 @@ public class Player : MonoBehaviour {
 				jumpCount = 0;
 		}
 	}
-
-	void DamageAnimation()
-	{
-		character.sprite = damageSprite [damageCount];
-
-		damageTimer += Time.deltaTime;
-
-		if (damageTimer >= damageFrameTime) {
-			damageTimer = 0.0f;
-			damageCount++;
-
-			if (damageCount >= damageSprite.Length)
-				damageCount = 0;
-		}
-	}
-
-    void SlideAnimation()
-    {
-        character.sprite = slideSprite[slideCount];
-
-        slideTimer += Time.deltaTime;
-
-        if (slideTimer >= slideFrameTime)
-        {
-            slideTimer = 0.0f;
-            slideCount++;
-
-            if (slideCount >= slideSprite.Length)
-                slideCount = 0;
-        }
-    }
-
+    
     public bool GetCrashState()
 	{
 		return isCrash;
@@ -371,13 +324,12 @@ public class Player : MonoBehaviour {
 
 		isCrash = true;
 
-		crashTimer = 0.0f;
+        character.sprite = etcSprite[0];
+
+        crashTimer = 0.0f;
 
 		playSpeed = 0.0f;
-
-		damageCount = 0;
-		damageTimer = 0.0f;
-
+        
 		InvokeRepeating ("CrashEffect", 0.0f, 0.1f);
 	}
 
@@ -388,6 +340,8 @@ public class Player : MonoBehaviour {
         isFalling = true;
 
 		fallingTimer = 0.0f;
+
+        character.sprite = etcSprite[1];
 
         shadow.gameObject.SetActive(false);
 
@@ -413,7 +367,12 @@ public class Player : MonoBehaviour {
             isMoveline = true;
             isLeft = true;
 
-            destVal = control.position.x - lineMovelimit;
+            camCurPos = camera.localPosition;
+            camDestPos = camCurPos + Vector3.left * 0.17f;
+
+            sideMoveVal = 0.0f;
+            curVal = control.localPosition;
+            destVal = control.localPosition - new Vector3(lineMovelimit, 0);
             lineNum--;
         }
     }
@@ -425,13 +384,21 @@ public class Player : MonoBehaviour {
             isMoveline = true;
             isRight = true;
 
-            destVal = control.position.x + lineMovelimit;
+            camCurPos = camera.localPosition;
+            camDestPos = camCurPos + Vector3.right * 0.17f;
+
+            sideMoveVal = 0.0f;
+            curVal = control.localPosition;
+            destVal = control.localPosition + new Vector3(lineMovelimit, 0);
             lineNum++;
         }
     }
 
 	void ControlJump()
 	{
+        if (isDown)
+            return;
+
 		if (isJump)
 			return;
 

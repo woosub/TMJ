@@ -14,6 +14,14 @@ public class CardItem : MonoBehaviour {
 
     float timer = 0.0f;
 
+    bool isMoving = false;
+
+    Vector3 curPos;
+    Vector3 destScale = new Vector3(5f, 5f, 5f);
+    Vector3 curScale;
+
+    const float moveSpeed = 2.0f;
+    float moveVal = 0.0f;
 
     void OnEnable()
     {
@@ -35,9 +43,18 @@ public class CardItem : MonoBehaviour {
 
         cnt = 0;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    public void MoveCard()
+    {
+        moveVal = 0.0f;
+        isMoving = true;
+
+        curPos = transform.parent.localPosition;
+        curScale = transform.parent.localScale;
+    }
+
+    // Update is called once per frame
+    void Update() {
         if (!isActive)
             return;
 
@@ -56,5 +73,23 @@ public class CardItem : MonoBehaviour {
         }
 
         sr.sprite = CardSprite[cnt];
+
+        if (isMoving)
+        {
+            moveVal += Time.deltaTime * moveSpeed;
+            transform.parent.localPosition = Vector3.Lerp(curPos, Vector3.zero, moveVal);
+            transform.parent.localScale = Vector3.Lerp(curScale, destScale, moveVal);
+            sr.color -= new Color(0,0,0,Time.deltaTime * 0.6f);
+
+            if (moveVal >= 1.0f)
+            {
+                transform.parent.gameObject.SetActive(false);
+                transform.parent.SetParent(null);
+
+                sr.color = Color.white;
+
+                isMoving = false;
+            }
+        }
     }
 }

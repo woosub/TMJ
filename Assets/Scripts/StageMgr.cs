@@ -77,7 +77,7 @@ public class StageMgr : MonoBehaviour {
 
 	void Awake()
 	{
-		Screen.SetResolution (480, 840, false);		
+		Screen.SetResolution (320, 560, false);		
 	}
 
 	// Use this for initialization
@@ -221,9 +221,12 @@ public class StageMgr : MonoBehaviour {
             CardObj.SetActive(true);
             CardObj.transform.parent = player.transform.parent.Find("Card_" + Random.Range(0, 3));
 			CardObj.transform.localPosition = Vector3.forward * 2;
+            CardObj.transform.localScale = Vector3.one;
             //>
 
-			StartCoroutine (MovingCard ());
+            CardObj.GetComponentInChildren<Collider>().enabled = false;
+
+            StartCoroutine (MovingCard ());
 
             CoinsActive(false);
         }
@@ -241,7 +244,8 @@ public class StageMgr : MonoBehaviour {
 				break;
 		}
 
-		CardObj.transform.localPosition = Vector3.zero;
+        CardObj.GetComponentInChildren<Collider>().enabled = true;
+        CardObj.transform.localPosition = Vector3.zero;
 	}
 
 	void CardEffectOff()
@@ -256,7 +260,17 @@ public class StageMgr : MonoBehaviour {
         gauge.fillAmount = 0;
         cardCapture.sprite = cardCaptureSprite[0];
 
+        StartCoroutine(CardCaptureCoroutine());
+    }
+
+    IEnumerator CardCaptureCoroutine()
+    {
+        yield return new WaitForSeconds(0.5f);
         getCards[getCardCount].sprite = getCardsSprite[1];
+        getCards[getCardCount].color = Color.white * 2;
+
+        yield return new WaitForSeconds(0.2f);
+        getCards[getCardCount].color = Color.white;
 
         getCardCount++;
 
