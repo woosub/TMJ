@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class StageMgr : MonoBehaviour {
 
 
 	public Button button;
+    public Button button2;
+    public Button button3;
+    public Button button4;
 
 
-	public GameObject[] block;
+    public GameObject[] block;
 
 	public static bool isStart;
 
@@ -21,6 +25,9 @@ public class StageMgr : MonoBehaviour {
 
 	GameObject player;
     //const int 
+
+    [SerializeField]
+    bool isHidden;
 
     [SerializeField]
     Sprite[] cardCaptureSprite;
@@ -66,18 +73,47 @@ public class StageMgr : MonoBehaviour {
     [SerializeField]
     int CardGaugeLimit = 30;
 
+    [SerializeField]
+    GameObject Background;
+
+    [SerializeField]
+    VideoPlayer vp;
+
     int cardGauge = 0;
 
     float playTime = 60f;
-
+    
 	public void Replay()
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene (1);
-	}
+        //UnityEngine.SceneManagement.SceneManager.LoadScene (1);
+        vp.enabled = true;
 
-	void Awake()
+        FinishUI.SetActive(false);
+        button.gameObject.SetActive(false);
+
+        Background.SetActive(true);
+
+        vp.loopPointReached += Vp_loopPointReached;
+
+        vp.Play();
+
+    }
+
+    private void Vp_loopPointReached(VideoPlayer source)
+    {
+        Invoke("Restart", 0.5f);        
+    }
+
+    void Restart()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    void Awake()
 	{
-		Screen.SetResolution (320, 560, false);		
+        Application.targetFrameRate = -1;
+
+        Screen.SetResolution (320, 560, false);		
 	}
 
 	// Use this for initialization
@@ -89,8 +125,11 @@ public class StageMgr : MonoBehaviour {
         getCardCount = 0;
 
         button.gameObject.SetActive (false);
+        button2.gameObject.SetActive(false);
+        button3.gameObject.SetActive(false);
+        button4.gameObject.SetActive(false);
 
-		isStart = false;
+        isStart = false;
 
 		bgSpriteList = new List<SpriteRenderer> ();
         coinSpriteList = new List<SpriteRenderer>();
@@ -123,13 +162,13 @@ public class StageMgr : MonoBehaviour {
             playTimer[0].sprite = counts[0];
             playTimer[1].sprite = counts[0];
 
-            TimeOver();
+            TimeOverFunc();
         }
 
         SpriteSorting ();
 	}
 
-    void TimeOver()
+    void TimeOverFunc()
     {
         isStart = false;
 
@@ -139,7 +178,17 @@ public class StageMgr : MonoBehaviour {
         button.gameObject.SetActive(true);
     }
 
-	void SpriteSorting()
+    public void GameOverFunc()
+    {
+        isStart = false;
+
+        FinishUI.SetActive(true);
+        FinishUI.GetComponent<Image>().sprite = GameOver[1];
+
+        button.gameObject.SetActive(true);
+    }
+
+    void SpriteSorting()
 	{
 		for (int i = 0; i < bgSpriteList.Count; i++) {
 			if (player.transform.position.z >= bgSpriteList [i].transform.position.z) {
@@ -160,11 +209,13 @@ public class StageMgr : MonoBehaviour {
 
 		//플레이어 캐릭터
 		player = Player.LoadPlayer ().transform.Find("Control").gameObject;
-		//장애물 오브젝트
+        
+        vp.enabled = false;
+        //장애물 오브젝트
 
 
 
-		SpriteRenderer[] allSprite = FindObjectsOfType<SpriteRenderer> ();
+        SpriteRenderer[] allSprite = FindObjectsOfType<SpriteRenderer> ();
 
 		for (int i = 0; i < allSprite.Length; i++) {
 			if (allSprite [i].gameObject.layer != LayerMask.NameToLayer ("Water") &&
@@ -178,8 +229,14 @@ public class StageMgr : MonoBehaviour {
             if (allSprite[i].gameObject.layer == LayerMask.NameToLayer("Coin"))
                 coinSpriteList.Add(allSprite[i]);
         }
+        int cardCnt = DataMgr.currentRegion.nameList.Count;
+        getCards[0].gameObject.SetActive(0 < cardCnt);
+        getCards[1].gameObject.SetActive(1 < cardCnt);
+        getCards[2].gameObject.SetActive(2 < cardCnt);
+        getCards[3].gameObject.SetActive(3 < cardCnt);
 
-		StartCoroutine (PlayStart ());
+
+        StartCoroutine (PlayStart ());
 	}
 
     void CoinsActive(bool flag)
@@ -192,7 +249,7 @@ public class StageMgr : MonoBehaviour {
 
 	IEnumerator PlayStart()
 	{
-		yield return new WaitForSeconds (0.5f);
+		yield return new WaitForSeconds (2.0f);
 
 		isStart = true;
 	}
@@ -200,7 +257,7 @@ public class StageMgr : MonoBehaviour {
 	public void Finish()
 	{
         FinishUI.SetActive(true);
-        button.gameObject.SetActive (true);
+        button2.gameObject.SetActive (true);
 	}
 
     public void CardGaugeUp()
@@ -288,5 +345,24 @@ public class StageMgr : MonoBehaviour {
         meter[1].sprite = counts[(int)goalDistance / 10 % 10];
         meter[2].sprite = counts[(int)goalDistance / 100 % 10];
         meter[3].sprite = counts[(int)goalDistance / 1000];
+    }
+
+    public void StartCardAnimation()
+    {
+        FinishUI.SetActive(false);
+        button2.gameObject.SetActive(false);
+        Background.SetActive(true);
+
+        //카드 등장 및 오픈 연출
+
+        //>
+        if (isHidden)
+        {
+            button3.gameObject.SetActive(true);
+        }
+        else
+        {
+            button4.gameObject.SetActive(true);
+        }
     }
 }

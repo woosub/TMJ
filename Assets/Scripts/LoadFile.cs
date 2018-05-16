@@ -16,22 +16,12 @@ public class LoadFile : MonoBehaviour
 
 	List<GameObject> objectList;
 
-	List<RegionData> regionList = new List<RegionData>();
-
 	//Vector3 startPos = Vector3.zero;
 
 	const int maxObjectCnt = 5;
 	const int maxObjectNum = 5;
 
 	const int maxBlockNum = 5;
-
-	public static List<RegionData> GetRegionList
-	{
-		get
-		{
-			return m_this.regionList;
-		}
-	}
 
 	public static void LoadMap()
 	{
@@ -81,35 +71,6 @@ public class LoadFile : MonoBehaviour
 
 	}
 
-	public static void LoadRegionInfo()
-	{
-		string text = Resources.Load<TextAsset> ("RegionData").text;
-
-		string[] data = text.Split (new string[] { "\n" }, System.StringSplitOptions.None);
-		string[] temp;
-
-		for (int i = 0; i < data.Length; i++) {
-			temp = data [i].Split (new string[] { "," }, System.StringSplitOptions.None);
-
-			int cnt = 0;
-			RegionData rData = new RegionData ();
-			rData.nameList = new List<string> ();
-
-			for (int j = 0; j < temp.Length; j++) {
-
-				if (cnt == 0) {
-					rData.index = temp [cnt].ToInt ();
-				} else if (cnt == 1) {
-					rData.region = temp [cnt];
-				} else {
-					rData.nameList.Add (temp [cnt]);
-				}
-				cnt++;
-			}
-
-			m_this.regionList.Add (rData);
-		}
-	}
 
 //	public void LoadObjects()
 //	{
@@ -142,8 +103,6 @@ public class LoadFile : MonoBehaviour
 	void Start ()
 	{
 		m_this = this;
-
-		DontDestroyOnLoad (gameObject);
 	}
 	
 	// Update is called once per frame

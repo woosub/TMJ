@@ -150,9 +150,9 @@ public class Player : MonoBehaviour {
 
             if (fallingTimer >= fallingTime)
             {
-                StageMgr.isStart = false;
+                sm.GameOverFunc();
 
-                UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+                //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             }
 
         }
