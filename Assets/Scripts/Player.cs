@@ -22,6 +22,9 @@ public class Player : MonoBehaviour {
 	static Vector3 startPos = new Vector3 (0, 0.98f, -0.59f);
 	static Vector3 startRot = new Vector3 (0, 0, 0);
 
+    [SerializeField]
+    float gamePlaySpeed = 2.0f;
+
 	float playSpeed = 2.0f;
 
 	Transform control;
@@ -102,7 +105,15 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-		coinEffect.SetActive (false);
+        SimpleGesture.On4AxisFlickSwipeDown(SwipeDown);
+        SimpleGesture.On4AxisFlickSwipeUp(SwipeUp);
+        SimpleGesture.On4AxisFlickSwipeLeft(SwipeLeft);
+        SimpleGesture.On4AxisFlickSwipeRight(SwipeRight);
+
+        playSpeed = gamePlaySpeed;
+
+
+        coinEffect.SetActive (false);
 
 		sky = transform.Find ("Sky");
 		camera = transform.Find ("Main Camera");
@@ -116,7 +127,42 @@ public class Player : MonoBehaviour {
 
     }
 
-	public static GameObject LoadPlayer()
+    public void SwipeDown()
+    {
+        if (!isDown && !isJump)
+        {
+            isDown = true;
+
+            character.sprite = etcSprite[3];
+
+
+            Invoke("ReleaseSlide", 0.3f);
+        }
+    }
+
+    public void SwipeUp()
+    {
+        ControlJump();
+    }
+
+    public void SwipeLeft()
+    {
+        if (!isMoveline)
+        {
+            ControlLeft();
+        }
+    }
+
+    public void SwipeRight()
+    {
+        if (!isMoveline)
+        {
+            ControlRight();
+        }
+    }
+
+
+    public static GameObject LoadPlayer()
 	{
 		GameObject obj = Resources.Load <GameObject>("Character/Player");
 
@@ -169,12 +215,12 @@ public class Player : MonoBehaviour {
 
             if (!isMoveline)
             {
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKeyDown(KeyCode.A))
                 {
                     ControlLeft();
                 }
 
-                if (Input.GetKey(KeyCode.D))
+                if (Input.GetKeyDown(KeyCode.D))
                 {
                     ControlRight();
                 }
@@ -241,7 +287,7 @@ public class Player : MonoBehaviour {
 
                     CancelInvoke("CrashEffect");
 
-                    playSpeed = 2.0f;
+                    playSpeed = gamePlaySpeed;
                 }
 
             }

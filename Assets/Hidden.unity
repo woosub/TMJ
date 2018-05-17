@@ -1964,7 +1964,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uACF5\uC57D \uBCF4\uAE30"
+  m_Text: promise
 --- !u!222 &1181894412
 CanvasRenderer:
   m_ObjectHideFlags: 0

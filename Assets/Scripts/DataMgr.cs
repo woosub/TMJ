@@ -55,7 +55,7 @@ public class DataMgr : MonoBehaviour {
 
         Application.targetFrameRate = -1;
 
-        Screen.SetResolution(320, 560, false);
+        Screen.SetResolution(480, 840, false);
     }
 	
 	// Update is called once per frame
