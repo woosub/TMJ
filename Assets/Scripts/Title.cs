@@ -7,7 +7,10 @@ public class Title : MonoBehaviour {
 	bool isReady = false;
 	bool isShowRegionList = false;
 
-	[SerializeField]
+    [SerializeField]
+    GameObject regionListObj2;
+
+    [SerializeField]
 	GameObject regionListObj;
 
 	[SerializeField]
@@ -19,7 +22,7 @@ public class Title : MonoBehaviour {
     bool pressAnyKeyFlag = false;
 
 	const int gap = 100;
-	const int startPos = 150; 
+	const int startPos = 200; 
 	const int defaultCnt = 4;
 	const int defaultGap = 50;
     
@@ -70,7 +73,9 @@ public class Title : MonoBehaviour {
 
             button.GetComponentInChildren<Text> ().text = list [i].region;
 			button.transform.SetParent(tr);
-			button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3 (0, firstPos - (i * gap));
+            button.transform.localScale = Vector3.one * 1.5f;
+
+            button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3 (0, firstPos - (i * gap));
             
             button.GetComponent<Button>().onClick.AddListener(delegate { DataMgr.Select(testInt++); });
 
@@ -94,6 +99,7 @@ public class Title : MonoBehaviour {
             isShowRegionList = true;
 
 			regionListObj.SetActive (true);
+            regionListObj2.SetActive(true);
         }
 	}
 

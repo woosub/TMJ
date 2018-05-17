@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Play.unity
     guid: 22c075f9aff9b4ccaa17beed9c2b2c76
+  - enabled: 1
+    path: Assets/Hidden.unity
+    guid: 54b488fb7f21a6c4ab6ca3248cd9b1c6

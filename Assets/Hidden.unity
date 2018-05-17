@@ -2282,7 +2282,7 @@ MonoBehaviour:
   button4: {fileID: 362909324}
   button5: {fileID: 180560936}
   block: []
-  isHidden: 0
+  isHidden: 1
   cardCaptureSprite:
   - {fileID: 21300022, guid: 59c7919679ca70740afcc521c96b2979, type: 3}
   - {fileID: 21300020, guid: 59c7919679ca70740afcc521c96b2979, type: 3}
