@@ -19,6 +19,17 @@ public class Title : MonoBehaviour {
     [SerializeField]
     GameObject pressAnyKey;
 
+    [SerializeField]
+    Image cartoon;
+
+    [SerializeField]
+    GameObject cartoonBtn;
+
+    [SerializeField]
+    Sprite[] cartoonPage;
+
+    int cartoonCnt = 0;
+
     bool pressAnyKeyFlag = false;
 
 	const int gap = 100;
@@ -28,7 +39,11 @@ public class Title : MonoBehaviour {
     
     // Use this for initialization
     IEnumerator Start () {
-        
+        cartoon.gameObject.SetActive(false);
+        cartoonBtn.SetActive(false);
+
+        cartoonCnt = 0;
+
         yield return new WaitForSeconds (0.05f);
 
 		isReady = false;
@@ -77,13 +92,63 @@ public class Title : MonoBehaviour {
 
             button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3 (0, firstPos - (i * gap));
             
-            button.GetComponent<Button>().onClick.AddListener(delegate { DataMgr.Select(testInt++); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { Select(testInt++); });
 
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+    public void Select(int idx)
+    {
+        DataMgr.currentRegion = DataMgr.regionList[idx];
+
+        if (DataMgr.isCartoon)
+        {
+            Invoke("NextScene", 0.5f);
+        }
+        else
+        {
+            Invoke("PlayCartoon", 0.5f);
+        }
+    }
+
+    void NextScene()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
+
+    void PlayCartoon()
+    {
+        cartoon.gameObject.SetActive(true);
+
+        NextPage();
+    }
+
+    public void NextPage()
+    {
+        if (cartoonCnt >= cartoonPage.Length)
+        {
+            DataMgr.isCartoon = true;
+            Invoke("NextScene", 0.5f);
+            return;
+        }
+
+        cartoonBtn.SetActive(false);
+        cartoon.sprite = cartoonPage[cartoonCnt];
+
+        cartoonCnt++;
+
+        Invoke("NextButton", 1.5f);
+    }
+
+    void NextButton()
+    {
+        cartoonBtn.SetActive(true);
+    }
+
+
+    // Update is called once per frame
+    void Update () {
 		if (!isReady)
 			return;
 

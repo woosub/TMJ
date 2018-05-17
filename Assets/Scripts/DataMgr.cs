@@ -7,6 +7,8 @@ public class DataMgr : MonoBehaviour {
 
     public static List<RegionData> regionList = new List<RegionData>();
     public static RegionData currentRegion;
+
+    public static bool isCartoon = false;
     
     public static void LoadRegionInfo()
     {
@@ -45,13 +47,6 @@ public class DataMgr : MonoBehaviour {
 
             regionList.Add(rData);
         }
-    }
-
-    public static void Select(int idx)
-    {
-        currentRegion = regionList[idx];
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     // Use this for initialization
