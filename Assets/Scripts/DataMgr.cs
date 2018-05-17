@@ -52,7 +52,11 @@ public class DataMgr : MonoBehaviour {
     // Use this for initialization
     void Start () {
         DontDestroyOnLoad(gameObject);
-	}
+
+        Application.targetFrameRate = -1;
+
+        Screen.SetResolution(320, 560, false);
+    }
 	
 	// Update is called once per frame
 	void Update () {

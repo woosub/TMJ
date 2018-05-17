@@ -136,9 +136,6 @@ public class StageMgr : MonoBehaviour {
 
     void Awake()
 	{
-        Application.targetFrameRate = -1;
-
-        Screen.SetResolution (320, 560, false);		
 	}
 
 	// Use this for initialization
