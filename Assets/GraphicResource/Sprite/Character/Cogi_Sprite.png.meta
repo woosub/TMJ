@@ -1,22 +1,25 @@
 fileFormatVersion: 2
-guid: f52badc99126911428828a1600d47dc4
-timeCreated: 1525179223
+guid: 4165d5cac879e9241aeadf4141b6ee77
+timeCreated: 1526593616
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: BGobject01_0
-    21300002: BGobject01_1
-    21300004: BGobject01_2
-    21300006: BGobject01_3
-    21300008: BGobject01_4
-    21300010: BGobject01_5
-    21300012: BGobject01_6
-    21300014: BGobject01_7
-    21300016: BGobject01_8
-    21300018: BGobject01_9
-    21300020: BGobject01_10
-    21300022: BGobject01_11
-    21300024: BGobject01_12
+    21300000: Cogi_Run_0
+    21300002: Cogi_Run_1
+    21300004: Cogi_Run_2
+    21300006: Cogi_Run_3
+    21300008: Cogi_Run_4
+    21300010: Cogi_Run_5
+    21300012: Cogi_Run_6
+    21300014: Cogi_Run_7
+    21300016: Cogi_Damage01
+    21300018: Cogi_Damage02
+    21300020: Cogi_Slide
+    21300022: Cogi_Getcard
+    21300024: Cogi_Jump1
+    21300026: Cogi_Jump2
+    21300028: Cogi_Jump3
+    21300030: Cogi_Jump4
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -70,7 +73,7 @@ TextureImporter:
   textureFormatSet: 0
   platformSettings:
   - buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -80,7 +83,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -90,7 +93,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: iPhone
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -100,7 +103,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -110,7 +113,7 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
   - buildTarget: Windows Store Apps
-    maxTextureSize: 256
+    maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -123,139 +126,195 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BGobject01_0
+      name: Cogi_Run_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 921
-        width: 449
-        height: 103
+        y: 1536
+        width: 256
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BGobject01_1
+      name: Cogi_Run_1
       rect:
         serializedVersion: 2
-        x: 2
-        y: 798
-        width: 423
-        height: 118
+        x: 256
+        y: 1536
+        width: 256
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BGobject01_2
+      name: Cogi_Run_2
       rect:
         serializedVersion: 2
-        x: 4
-        y: 627
-        width: 281
-        height: 158
+        x: 512
+        y: 1536
+        width: 256
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BGobject01_3
+      name: Cogi_Run_3
       rect:
         serializedVersion: 2
-        x: 5
+        x: 768
+        y: 1536
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Run_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Run_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Run_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Run_7
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 1024
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Damage01
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Damage02
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 512
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Slide
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Getcard
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 512
+        width: 256
+        height: 512
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Jump1
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 0
-        width: 393
-        height: 446
+        width: 256
+        height: 512
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BGobject01_4
+      name: Cogi_Jump2
       rect:
         serializedVersion: 2
-        x: 296
-        y: 584
-        width: 259
-        height: 199
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGobject01_5
-      rect:
-        serializedVersion: 2
-        x: 567
-        y: 545
-        width: 442
-        height: 479
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGobject01_6
-      rect:
-        serializedVersion: 2
-        x: 29
-        y: 474
-        width: 176
-        height: 144
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGobject01_7
-      rect:
-        serializedVersion: 2
-        x: 327
-        y: 446
-        width: 167
-        height: 135
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGobject01_8
-      rect:
-        serializedVersion: 2
-        x: 402
+        x: 256
         y: 0
-        width: 430
-        height: 450
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGobject01_9
-      rect:
-        serializedVersion: 2
-        x: 217
-        y: 506
-        width: 79
-        height: 85
+        width: 256
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,13 +322,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BGobject01_10
+      name: Cogi_Jump3
       rect:
         serializedVersion: 2
-        x: 434
-        y: 803
-        width: 105
-        height: 94
+        x: 512
+        y: 0
+        width: 256
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -277,27 +336,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: BGobject01_11
+      name: Cogi_Jump4
       rect:
         serializedVersion: 2
-        x: 557
-        y: 453
-        width: 467
-        height: 82
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BGobject01_12
-      rect:
-        serializedVersion: 2
-        x: 837
-        y: 193
-        width: 187
-        height: 240
+        x: 768
+        y: 0
+        width: 256
+        height: 512
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
