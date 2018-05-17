@@ -98,6 +98,11 @@ public class StageMgr : MonoBehaviour {
     [SerializeField]
     GameObject go;
 
+    [SerializeField]
+    GameObject cardTouchEffectRes;
+
+    GameObject cardTouchEffectObj;
+
     int cardGauge = 0;
 
     float playTime = 60f;
@@ -156,6 +161,9 @@ public class StageMgr : MonoBehaviour {
 
         CardObj = Instantiate(CardRes);
         CardObj.SetActive(false);
+
+        cardTouchEffectObj = Instantiate(cardTouchEffectRes);
+        cardTouchEffectObj.SetActive(false);
 
         FinishUI.SetActive(false);
 
@@ -364,7 +372,14 @@ public class StageMgr : MonoBehaviour {
         if (getCardCount > 3)
             yield break;
 
-        yield return new WaitForSeconds(0.5f);
+        cardTouchEffectObj.SetActive(true);
+        cardTouchEffectObj.transform.position = CardObj.transform.position;
+        
+        yield return new WaitForSeconds(0.05f);
+
+        cardTouchEffectObj.SetActive(false);
+
+        yield return new WaitForSeconds(0.4f);
         getCards[getCardCount].sprite = getCardsSprite[1];
         getCards[getCardCount].color = Color.white * 2;
 

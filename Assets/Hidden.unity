@@ -2334,6 +2334,8 @@ MonoBehaviour:
   cardMovePos_3: []
   ready: {fileID: 1948678596}
   go: {fileID: 812536649}
+  cardTouchEffectRes: {fileID: 1233988701295270, guid: c0413ee35355cd34cb674cc8375487ac,
+    type: 2}
 --- !u!4 &1391492203
 Transform:
   m_ObjectHideFlags: 0
