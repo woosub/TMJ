@@ -6,6 +6,8 @@ using UnityEngine.Video;
 
 public class StageMgr : MonoBehaviour {
 
+    public static int currentOptiFront;
+    public static int currentOptiRear;
 
 	public Button button;  //replay
     public Button button2; //opencard
@@ -20,7 +22,6 @@ public class StageMgr : MonoBehaviour {
 
 
 	List<SpriteRenderer> bgSpriteList = new List<SpriteRenderer> ();
-    List<SpriteRenderer> coinSpriteList = new List<SpriteRenderer>();
 
     int getCardCount = 0;
 
@@ -143,8 +144,8 @@ public class StageMgr : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         //DontDestroyOnLoad (gameObject);
-
-		CardEffectOff ();
+        
+        CardEffectOff ();
         goalDistance = 100f;
         getCardCount = 0;
 
@@ -157,7 +158,6 @@ public class StageMgr : MonoBehaviour {
         isStart = false;
 
 		bgSpriteList = new List<SpriteRenderer> ();
-        coinSpriteList = new List<SpriteRenderer>();
 
         CardObj = Instantiate(CardRes);
         CardObj.SetActive(false);
@@ -253,13 +253,8 @@ public class StageMgr : MonoBehaviour {
                 allSprite[i].gameObject.layer != LayerMask.NameToLayer("Coin")) {
 				bgSpriteList.Add (allSprite [i]);
 			}
-		}
-
-        for (int i = 0; i < allSprite.Length; i++)
-        {
-            if (allSprite[i].gameObject.layer == LayerMask.NameToLayer("Coin"))
-                coinSpriteList.Add(allSprite[i]);
         }
+        
         int cardCnt = isHidden ? 1 : DataMgr.currentRegion.nameList.Count;
         getCards[0].gameObject.SetActive(0 < cardCnt);
         getCards[1].gameObject.SetActive(1 < cardCnt);
@@ -272,10 +267,24 @@ public class StageMgr : MonoBehaviour {
 
     void CoinsActive(bool flag)
     {
-        for (int i = 0; i < coinSpriteList.Count; i++)
+        for (int i = currentOptiRear; i < currentOptiFront; i++)
         {
-            coinSpriteList[i].gameObject.SetActive(flag);
+            if (LoadFile.GetObjectList[i] != null)
+            {
+                Transform[] trs = LoadFile.GetObjectList[i].GetComponentsInChildren<Transform>();
+                for (int j = 0; j < trs.Length; j++)
+                {
+                    if (trs[j].gameObject.layer == LayerMask.NameToLayer("Coin"))
+                    {
+                        trs[j].gameObject.SetActive(flag);
+                    }
+                }
+            }
         }
+        //for (int i = 0; i < coinSpriteList.Count; i++)
+        //{
+        //    coinSpriteList[i].gameObject.SetActive(flag);
+        //}
     }
 
 	IEnumerator PlayStart()

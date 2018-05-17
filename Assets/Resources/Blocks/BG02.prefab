@@ -131,7 +131,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4269156108302360}
-  m_Layer: 0
+  - component: {fileID: 65724803059477220}
+  m_Layer: 14
   m_Name: BG02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -976,6 +977,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1430087284662900}
   m_Mesh: {fileID: 4300000, guid: 951dd822f54f7944ca53cbc69da2e680, type: 3}
+--- !u!65 &65724803059477220
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1250088571880646}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &95225469013513950
 Animator:
   serializedVersion: 3
