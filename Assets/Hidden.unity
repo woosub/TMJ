@@ -2323,7 +2323,7 @@ MonoBehaviour:
   FinishUI: {fileID: 367876022}
   CardRes: {fileID: 1297427731237208, guid: f5d00ad4e8a4e944b892a3b6fad52da8, type: 2}
   Coin: {fileID: 1815040972691228, guid: d69851f2658365742a536b240e1832dc, type: 2}
-  CardGaugeLimit: 90
+  CardGaugeLimit: 120
   Background: {fileID: 1640295967}
   vp: {fileID: 1069079732}
   viewCard: {fileID: 1672342705511780, guid: 66d73559cb1ed6244a273aafa79b29e7, type: 2}
@@ -2478,15 +2478,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectResList:
-  - {fileID: 1460873374720818, guid: 3bddf4d1094d14f1ca7e668d1c10f6f1, type: 2}
-  - {fileID: 1469930145237204, guid: 4b5e10ab8852949d6bf3762c863723e4, type: 2}
-  - {fileID: 1989587124371784, guid: 939f88a47c6504597bae9c990ba0ac7a, type: 2}
-  - {fileID: 1118986432366838, guid: 01139bf1728837c4887d6245c16742d8, type: 2}
-  - {fileID: 1487472148074244, guid: b2848c0d5a0eb44a0afcb0c61e0356be, type: 2}
+  - {fileID: 1546083632039524, guid: 9327d805880c1644ca09b636f3ade1b8, type: 2}
+  - {fileID: 1190412414853852, guid: ebabf28beebb285418f805b4f97135ab, type: 2}
+  - {fileID: 1180382953576816, guid: baea28201770a624ba05417f483a1265, type: 2}
+  - {fileID: 1218264662915540, guid: d93cfb83e9cce7e48a41887df505cb51, type: 2}
+  - {fileID: 1487472148074244, guid: bd548011ec86ee343b23097bd0f814a2, type: 2}
   mapBlockList:
-  - {fileID: 1908997396027656, guid: 03a6f7c1ea7f40742a9a7ed21e33a0b3, type: 2}
-  - {fileID: 1250088571880646, guid: 98d045b54e14948cd9d687621876531f, type: 2}
-  - {fileID: 1988002409646168, guid: 8ea00c5de5ae0094592cb1828945ec69, type: 2}
+  - {fileID: 1937025265567000, guid: 2d48d698373993048ab629e99cb51a11, type: 2}
+  - {fileID: 1665637525071212, guid: c755352a742fda049812dd7d6d12db18, type: 2}
+  - {fileID: 1102871965817884, guid: 942b131c823bc524d93eec6a27fb36c1, type: 2}
   - {fileID: 1719681375537322, guid: 50ddebc807b1bfd4195e3907be086b82, type: 2}
 --- !u!4 &1533686312
 Transform:
