@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 65229875054364498}
   - component: {fileID: 65976224260082986}
   - component: {fileID: 65840264794444754}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: trap01_10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
