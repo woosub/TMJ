@@ -33,6 +33,13 @@ TextureImporter:
     21300052: UI_0
     21300054: PrssAnyKey
     21300056: black
+    21300058: window01
+    21300060: slide_bar
+    21300062: button01
+    21300064: effect01
+    21300066: Ready
+    21300068: Go
+    21300070: needmorecard
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -222,12 +229,12 @@ TextureImporter:
       name: Pause
       rect:
         serializedVersion: 2
-        x: 52
-        y: 626
-        width: 124
-        height: 133
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 17
+        y: 627
+        width: 129
+        height: 134
+      alignment: 9
+      pivot: {x: 0.5194606, y: 0.51814306}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -236,10 +243,10 @@ TextureImporter:
       name: GAmeOver
       rect:
         serializedVersion: 2
-        x: 307
-        y: 423
-        width: 451
-        height: 106
+        x: 200
+        y: 484
+        width: 296
+        height: 61
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -250,10 +257,10 @@ TextureImporter:
       name: Finish
       rect:
         serializedVersion: 2
-        x: 30
-        y: 171
-        width: 491
-        height: 153
+        x: 11
+        y: 318
+        width: 305
+        height: 95
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -265,9 +272,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 14
-        y: 341
-        width: 262
-        height: 272
+        y: 428
+        width: 172
+        height: 185
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -530,10 +537,10 @@ TextureImporter:
       name: PrssAnyKey
       rect:
         serializedVersion: 2
-        x: 278
-        y: 351
-        width: 265
-        height: 55
+        x: 203
+        y: 434
+        width: 264
+        height: 49
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -548,6 +555,104 @@ TextureImporter:
         y: 152
         width: 83
         height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: window01
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 630
+        width: 140
+        height: 134
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 43, y: 43, z: 43, w: 43}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: slide_bar
+      rect:
+        serializedVersion: 2
+        x: 506
+        y: 412
+        width: 129
+        height: 130
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: button01
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 412
+        width: 133
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: effect01
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 207
+        width: 213
+        height: 205
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Ready
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 253
+        width: 215
+        height: 65
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Go
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 195
+        width: 135
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: needmorecard
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 153
+        width: 312
+        height: 36
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
