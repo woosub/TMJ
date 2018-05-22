@@ -61,7 +61,7 @@ GameObject:
   - component: {fileID: 23107798491049128}
   - component: {fileID: 65676772876610278}
   m_Layer: 12
-  m_Name: card (10)
+  m_Name: coin01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 23123625736814756}
   - component: {fileID: 65914849923987698}
   m_Layer: 12
-  m_Name: card (11)
+  m_Name: coin02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 23800434590168498}
   - component: {fileID: 65523384949190570}
   m_Layer: 12
-  m_Name: card (13)
+  m_Name: coin04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 23047396711295712}
   - component: {fileID: 65807090260216282}
   m_Layer: 12
-  m_Name: card (12)
+  m_Name: coin03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 23008234274906362}
   - component: {fileID: 65607461672102294}
   m_Layer: 12
-  m_Name: card (14)
+  m_Name: coin05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

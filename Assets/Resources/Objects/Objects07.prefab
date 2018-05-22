@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23468565692832130}
   - component: {fileID: 65127776270201024}
   m_Layer: 12
-  m_Name: card (50)
+  m_Name: coin08
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 23826703432857700}
   - component: {fileID: 65584259817158092}
   m_Layer: 12
-  m_Name: card (49)
+  m_Name: coin04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 23378555439469836}
   - component: {fileID: 65430988027733410}
   m_Layer: 12
-  m_Name: card (52)
+  m_Name: coin10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 23101738004259994}
   - component: {fileID: 65914006161968780}
   m_Layer: 12
-  m_Name: card (47)
+  m_Name: coin02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 23026151037761252}
   - component: {fileID: 65938298713819794}
   m_Layer: 12
-  m_Name: card (55)
+  m_Name: coin06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 23354505539683354}
   - component: {fileID: 65959267053813374}
   m_Layer: 12
-  m_Name: card (54)
+  m_Name: coin05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 23102500837736494}
   - component: {fileID: 65621619712615448}
   m_Layer: 12
-  m_Name: card (48)
+  m_Name: coin03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 23307425852782644}
   - component: {fileID: 65273307592123354}
   m_Layer: 12
-  m_Name: card (56)
+  m_Name: coin07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -236,7 +236,7 @@ GameObject:
   - component: {fileID: 23732521021771620}
   - component: {fileID: 65288991154750716}
   m_Layer: 12
-  m_Name: card (46)
+  m_Name: coin01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 23229043900342132}
   - component: {fileID: 65097721747117624}
   m_Layer: 12
-  m_Name: card (51)
+  m_Name: coin09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -277,12 +277,12 @@ Transform:
   - {fileID: 4865833970967076}
   - {fileID: 4507708070780320}
   - {fileID: 4551720333414046}
-  - {fileID: 4868185664758274}
-  - {fileID: 4782161711307072}
-  - {fileID: 4902759806797616}
   - {fileID: 4932456229180396}
   - {fileID: 4418950979999514}
   - {fileID: 4366004945017948}
+  - {fileID: 4868185664758274}
+  - {fileID: 4782161711307072}
+  - {fileID: 4902759806797616}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -310,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1.000001}
   m_Children: []
   m_Father: {fileID: 4060133017450598}
-  m_RootOrder: 12
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 90}
 --- !u!4 &4418950979999514
 Transform:
@@ -323,7 +323,7 @@ Transform:
   m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1.000001}
   m_Children: []
   m_Father: {fileID: 4060133017450598}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 90}
 --- !u!4 &4507708070780320
 Transform:
@@ -375,7 +375,7 @@ Transform:
   m_LocalScale: {x: 0.21275513, y: 3.0988727, z: 0.38940188}
   m_Children: []
   m_Father: {fileID: 4060133017450598}
-  m_RootOrder: 8
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 90}
 --- !u!4 &4804490061141660
 Transform:
@@ -427,7 +427,7 @@ Transform:
   m_LocalScale: {x: 0.57470953, y: 0.5286888, z: 0.5286888}
   m_Children: []
   m_Father: {fileID: 4060133017450598}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!4 &4902759806797616
 Transform:
@@ -440,7 +440,7 @@ Transform:
   m_LocalScale: {x: 0.57470953, y: 0.5286888, z: 0.5286888}
   m_Children: []
   m_Father: {fileID: 4060133017450598}
-  m_RootOrder: 9
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!4 &4932456229180396
 Transform:
@@ -453,7 +453,7 @@ Transform:
   m_LocalScale: {x: 1.0000005, y: 1.0000005, z: 1.000001}
   m_Children: []
   m_Father: {fileID: 4060133017450598}
-  m_RootOrder: 10
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: -180, z: 90}
 --- !u!23 &23019296262278302
 MeshRenderer:
