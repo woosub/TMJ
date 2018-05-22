@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 0e9192f2ec16d0943b7bf005f5cfa70a
+timeCreated: 1526953181
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: BG01
+    100002: BG02
+    100004: BG03
+    100006: BG04
+    100008: BG05
+    100010: BG06
+    100012: BG07
+    100014: BG08
+    100016: BG09
+    100018: BG10
+    100020: Bridge01
+    100022: Bridge02
+    100024: Bridge03
+    100026: Bridge04
+    100028: //RootNode
+    100030: Trap01
+    100032: Trap02
+    100034: Trap03
+    100036: Trap04
+    100038: Trap05
+    100040: Trap06
+    100042: Trap07
+    400000: BG01
+    400002: BG02
+    400004: BG03
+    400006: BG04
+    400008: BG05
+    400010: BG06
+    400012: BG07
+    400014: BG08
+    400016: BG09
+    400018: BG10
+    400020: Bridge01
+    400022: Bridge02
+    400024: Bridge03
+    400026: Bridge04
+    400028: //RootNode
+    400030: Trap01
+    400032: Trap02
+    400034: Trap03
+    400036: Trap04
+    400038: Trap05
+    400040: Trap06
+    400042: Trap07
+    2100000: 02 - Default
+    2300000: BG01
+    2300002: BG02
+    2300004: BG03
+    2300006: BG04
+    2300008: BG05
+    2300010: BG06
+    2300012: BG07
+    2300014: BG08
+    2300016: BG09
+    2300018: BG10
+    2300020: Bridge01
+    2300022: Bridge02
+    2300024: Bridge03
+    2300026: Bridge04
+    2300028: Trap01
+    2300030: Trap02
+    2300032: Trap03
+    2300034: Trap04
+    2300036: Trap05
+    2300038: Trap06
+    2300040: Trap07
+    3300000: BG01
+    3300002: BG02
+    3300004: BG03
+    3300006: BG04
+    3300008: BG05
+    3300010: BG06
+    3300012: BG07
+    3300014: BG08
+    3300016: BG09
+    3300018: BG10
+    3300020: Bridge01
+    3300022: Bridge02
+    3300024: Bridge03
+    3300026: Bridge04
+    3300028: Trap01
+    3300030: Trap02
+    3300032: Trap03
+    3300034: Trap04
+    3300036: Trap05
+    3300038: Trap06
+    3300040: Trap07
+    4300000: BG06
+    4300002: BG01
+    4300004: BG02
+    4300006: BG03
+    4300008: BG04
+    4300010: BG09
+    4300012: Trap07
+    4300014: BG10
+    4300016: Bridge02
+    4300018: Bridge01
+    4300020: BG07
+    4300022: BG08
+    4300024: Trap03
+    4300026: Trap01
+    4300028: Trap02
+    4300030: Bridge03
+    4300032: Bridge04
+    4300034: Trap06
+    4300036: Trap05
+    4300038: Trap04
+    4300040: BG05
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
