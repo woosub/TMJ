@@ -40,6 +40,8 @@ TextureImporter:
     21300066: Ready
     21300068: Go
     21300070: needmorecard
+    21300072: Cogi_On
+    21300074: Cogi_Off
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -191,20 +193,6 @@ TextureImporter:
         y: 548
         width: 240
         height: 235
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Coin
-      rect:
-        serializedVersion: 2
-        x: 31
-        y: 809
-        width: 184
-        height: 199
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -570,7 +558,7 @@ TextureImporter:
         width: 140
         height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 43, y: 43, z: 43, w: 43}
       outline: []
       physicsShape: []
@@ -584,7 +572,7 @@ TextureImporter:
         width: 129
         height: 130
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 30, y: 30, z: 30, w: 30}
       outline: []
       physicsShape: []
@@ -598,7 +586,7 @@ TextureImporter:
         width: 133
         height: 132
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 30, y: 30, z: 30, w: 30}
       outline: []
       physicsShape: []
@@ -612,7 +600,7 @@ TextureImporter:
         width: 213
         height: 205
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -626,7 +614,7 @@ TextureImporter:
         width: 215
         height: 65
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -640,7 +628,7 @@ TextureImporter:
         width: 135
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -653,6 +641,34 @@ TextureImporter:
         y: 153
         width: 312
         height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_On
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 906
+        width: 96
+        height: 101
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Cogi_Off
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 903
+        width: 101
+        height: 107
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
