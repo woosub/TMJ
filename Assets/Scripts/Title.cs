@@ -93,9 +93,11 @@ public class Title : MonoBehaviour {
 
             button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, firstPos - (i * gap));
 
+			int v = testInt++;
+
             button.GetComponent<Button>().onClick.AddListener(delegate {
                 //str = ;
-                SetLoadRegion(testInt++); });
+				SetLoadRegion(v); });
 
         }
     }
@@ -132,8 +134,10 @@ public class Title : MonoBehaviour {
             button.transform.localScale = Vector3.one * 1.5f;
 
             button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3 (0, firstPos - (i * gap));
+
+			int v = testInt++;
             
-            button.GetComponent<Button>().onClick.AddListener(delegate { Select(testInt++); });
+            button.GetComponent<Button>().onClick.AddListener(delegate { Select(v); });
 
         }
 	}
