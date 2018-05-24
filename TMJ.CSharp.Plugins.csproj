@@ -320,6 +320,15 @@
     <Compile Include="Assets\Plugins\SimpleGesture\TouchInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Font\Korean.fnt" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Examples\Font1\font1.fnt" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Examples\Font2\font2.fnt" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Examples\font3\font3.fnt" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Shaders\BFILogic.cginc" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Shaders\Font2.shader" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Shaders\Font3.shader" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Shaders\Font4.shader" />
+    <None Include="Assets\Plugins\BitmapFontImporter\Shaders\Font5.shader" />
     <None Include="Assets\Resources\LoadMap1.txt" />
     <None Include="Assets\Resources\RegionData.txt" />
   </ItemGroup>

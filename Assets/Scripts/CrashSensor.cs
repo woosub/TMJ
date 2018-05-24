@@ -38,32 +38,24 @@ public class CrashSensor : MonoBehaviour
                 p.Crash();
             }
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Finish"))
-        {
-            StageMgr.isStart = false;
-            Invoke("Finish", 0.5f);
-        }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
         {
             sm.CardGaugeUp();
-            other.gameObject.SetActive(false);
-			p.CoinGetEffect ();
+            other.GetComponent<Renderer>().enabled = false;//gameObject.SetActive(false);
+            other.GetComponent<Collider>().enabled = false;
+            p.CoinGetEffect ();
             //Destroy(other.gameObject);
         }
-        else if (other.gameObject.layer == LayerMask.NameToLayer("Card"))
-        {
-            //other.transform.parent.gameObject.SetActive(false);
+        //else if (other.gameObject.layer == LayerMask.NameToLayer("Card"))
+        //{
+        //    //other.transform.parent.gameObject.SetActive(false);
 
-            other.transform.parent.SetParent(p.transform.Find("Main Camera/CardDest"));
-            other.transform.GetComponent<CardItem>().MoveCard();
+        //    other.transform.parent.SetParent(p.transform.Find("Main Camera/CardDest"));
+        //    other.transform.GetComponent<CardItem>().MoveCard();
 
-            p.PlayerGetCard();
-            sm.CardCapture();
-        }
+        //    p.PlayerGetCard();
+        //    sm.CardCapture();
+        //}
     }
-
-    void Finish()
-    {
-       sm.Finish();
-    }
+    
 }

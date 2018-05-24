@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
+//using UnityEngine.Video;
 
 public class StageMgr : MonoBehaviour {
 
@@ -13,7 +13,7 @@ public class StageMgr : MonoBehaviour {
     public Button button2; //opencard
     public Button button3; //공약보기
     public Button button4; //Go to Main
-    public Button button5; //Go to Hidden
+    public Button button5; //이어하기
 
 
     public GameObject[] block;
@@ -21,15 +21,13 @@ public class StageMgr : MonoBehaviour {
 	public static bool isStart;
 
 
-	List<SpriteRenderer> bgSpriteList = new List<SpriteRenderer> ();
-
-    int getCardCount = 0;
-
+	//List<SpriteRenderer> bgSpriteList = new List<SpriteRenderer> ();
+    
 	GameObject player;
     //const int 
 
-    [SerializeField]
-    bool isHidden;
+    //[SerializeField]
+    //bool isHidden;
 
     [SerializeField]
     Sprite[] cardCaptureSprite;
@@ -43,14 +41,14 @@ public class StageMgr : MonoBehaviour {
     [SerializeField]
     Sprite[] counts;
 
-    [SerializeField]
-    Image[] playTimer;
+    //[SerializeField]
+    //Image[] playTimer;
 
     [SerializeField]
     Image[] meter;
 
-    [SerializeField]
-    Image[] getCards;
+    //[SerializeField]
+    //Image[] getCards;
 
     [SerializeField]
     Image gauge;
@@ -73,13 +71,13 @@ public class StageMgr : MonoBehaviour {
     GameObject CardObj;
 
     [SerializeField]
-    int CardGaugeLimit = 30;
+    const int CardGaugeLimit = 100;
 
     [SerializeField]
     GameObject Background;
 
-    [SerializeField]
-    VideoPlayer vp;
+    //[SerializeField]
+    //VideoPlayer vp;
 
     [SerializeField]
     GameObject viewCard;
@@ -102,34 +100,63 @@ public class StageMgr : MonoBehaviour {
     [SerializeField]
     GameObject cardTouchEffectRes;
 
+    [SerializeField]
+    GameObject movie;
+
     GameObject cardTouchEffectObj;
 
     int cardGauge = 0;
+    float currentSpeed = 1.5f;
 
-    float playTime = 60f;
+    //float playTime = 60f;
+
+    public bool isFinish = false;
     
 	public void Replay()
 	{
         //UnityEngine.SceneManagement.SceneManager.LoadScene (1);
-        vp.enabled = true;
+        //vp.enabled = true;
 
         FinishUI.SetActive(false);
         button.gameObject.SetActive(false);
+        button5.gameObject.SetActive(false);
 
         Background.SetActive(true);
+        movie.SetActive(true);
 
-        vp.loopPointReached += Vp_loopPointReached;
+        //vp.loopPointReached += Vp_loopPointReached;
 
-        vp.Play();
+        //vp.Play();
 
     }
 
-    private void Vp_loopPointReached(VideoPlayer source)
+    //private void Vp_loopPointReached(VideoPlayer source)
+    //{
+    //    Invoke("Restart", 0.5f);        
+    //}
+
+    public void Continue()
     {
-        Invoke("Restart", 0.5f);        
+        isStart = true;
+        player.GetComponentInParent<Player>().playSpeed = currentSpeed;
+
+        //Image[] trs = createCardPos.GetComponentsInChildren<Image>();
+
+        //for (int i = 0; i < trs.Length; i++)
+        //{
+        //    DestroyImmediate(trs[i].gameObject);
+        //}
+
+        while (createCardPos.childCount > 0)
+        {
+            DestroyImmediate(createCardPos.GetChild(0).gameObject);
+        }
+
+        Background.SetActive(false);
+        movie.SetActive(false);
     }
 
-    void Restart()
+    public void Restart()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
@@ -141,10 +168,9 @@ public class StageMgr : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         //DontDestroyOnLoad (gameObject);
-        
+        isFinish = false;
         CardEffectOff ();
-        goalDistance = 100f;
-        getCardCount = 0;
+        //goalDistance = 100f;
 
         button.gameObject.SetActive (false);
         button2.gameObject.SetActive(false);
@@ -154,7 +180,7 @@ public class StageMgr : MonoBehaviour {
 
         isStart = false;
 
-		bgSpriteList = new List<SpriteRenderer> ();
+		//bgSpriteList = new List<SpriteRenderer> ();
 
         CardObj = Instantiate(CardRes);
         CardObj.SetActive(false);
@@ -174,61 +200,61 @@ public class StageMgr : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (!isStart)
-			return;
+		//if (!isStart)
+		//	return;
 
-        playTime -= Time.deltaTime;
+        //playTime -= Time.deltaTime;
 
 
-        if (playTime > 0)
-        {
-            playTimer[0].sprite = counts[((int)playTime % 10)];
-            playTimer[1].sprite = counts[((int)playTime / 10)];
-        }
-        else
-        {
-            playTimer[0].sprite = counts[0];
-            playTimer[1].sprite = counts[0];
+        //if (playTime > 0)
+        //{
+        //    playTimer[0].sprite = counts[((int)playTime % 10)];
+        //    playTimer[1].sprite = counts[((int)playTime / 10)];
+        //}
+        //else
+        //{
+        //    playTimer[0].sprite = counts[0];
+        //    playTimer[1].sprite = counts[0];
 
-            TimeOverFunc();
-        }
+        //    //TimeOverFunc();
+        //}
 
-        SpriteSorting ();
+        //SpriteSorting ();
 	}
 
-    void TimeOverFunc()
-    {
-        isStart = false;
+    //void TimeOverFunc()
+    //{
+    //    isStart = false;
 
-        FinishUI.SetActive(true);
-        FinishUI.GetComponent<Image>().sprite = GameOver[1];
+    //    FinishUI.SetActive(true);
+    //    FinishUI.GetComponent<Image>().sprite = GameOver[1];
 
-        button.gameObject.SetActive(true);
-    }
+    //    button.gameObject.SetActive(true);
+    //}
 
-    public void GameOverFunc()
-    {
-        isStart = false;
+    //public void GameOverFunc()
+    //{
+    //    isStart = false;
 
-        FinishUI.SetActive(true);
-        FinishUI.GetComponent<Image>().sprite = GameOver[1];
+    //    FinishUI.SetActive(true);
+    //    FinishUI.GetComponent<Image>().sprite = GameOver[1];
 
-        button.gameObject.SetActive(true);
-    }
+    //    button.gameObject.SetActive(true);
+    //}
 
-    void SpriteSorting()
-	{
-		for (int i = 0; i < bgSpriteList.Count; i++) {
-			if (player.transform.position.z >= bgSpriteList [i].transform.position.z) {
-				bgSpriteList [i].sortingOrder += 2;
+ //   void SpriteSorting()
+	//{
+	//	for (int i = 0; i < bgSpriteList.Count; i++) {
+	//		if (player.transform.position.z >= bgSpriteList [i].transform.position.z) {
+	//			bgSpriteList [i].sortingOrder += 2;
 
-				bgSpriteList [i] = null;
-			}
+	//			bgSpriteList [i] = null;
+	//		}
 
-		}
+	//	}
 
-		bgSpriteList.RemoveAll (n => n == null);
-	}
+	//	bgSpriteList.RemoveAll (n => n == null);
+	//}
 
 	public void LoadData()
 	{
@@ -238,51 +264,49 @@ public class StageMgr : MonoBehaviour {
 		//플레이어 캐릭터
 		player = Player.LoadPlayer ().transform.Find("Control").gameObject;
         
-        vp.enabled = false;
+        //vp.enabled = false;
         //장애물 오브젝트
-
-
-
-        SpriteRenderer[] allSprite = FindObjectsOfType<SpriteRenderer> ();
-
-		for (int i = 0; i < allSprite.Length; i++) {
-			if (allSprite [i].gameObject.layer != LayerMask.NameToLayer ("Water") &&
-                allSprite[i].gameObject.layer != LayerMask.NameToLayer("Coin")) {
-				bgSpriteList.Add (allSprite [i]);
-			}
-        }
         
-        int cardCnt = isHidden ? 1 : DataMgr.currentRegion.nameList.Count;
-        getCards[0].gameObject.SetActive(0 < cardCnt);
-        getCards[1].gameObject.SetActive(1 < cardCnt);
-        getCards[2].gameObject.SetActive(2 < cardCnt);
-        getCards[3].gameObject.SetActive(3 < cardCnt);
+  //      SpriteRenderer[] allSprite = FindObjectsOfType<SpriteRenderer> ();
+
+		//for (int i = 0; i < allSprite.Length; i++) {
+		//	if (allSprite [i].gameObject.layer != LayerMask.NameToLayer ("Water") &&
+  //              allSprite[i].gameObject.layer != LayerMask.NameToLayer("Coin")) {
+		//		bgSpriteList.Add (allSprite [i]);
+		//	}
+  //      }
+        
+        int cardCnt = DataMgr.currentRegion.nameList.Count;
+        //getCards[0].gameObject.SetActive(0 < cardCnt);
+        //getCards[1].gameObject.SetActive(1 < cardCnt);
+        //getCards[2].gameObject.SetActive(2 < cardCnt);
+        //getCards[3].gameObject.SetActive(3 < cardCnt);
 
 
         StartCoroutine (PlayStart ());
 	}
 
-    void CoinsActive(bool flag)
-    {
-        for (int i = currentOptiRear; i < currentOptiFront; i++)
-        {
-            if (LoadFile.GetObjectList[i] != null)
-            {
-                Transform[] trs = LoadFile.GetObjectList[i].GetComponentsInChildren<Transform>();
-                for (int j = 0; j < trs.Length; j++)
-                {
-                    if (trs[j].gameObject.layer == LayerMask.NameToLayer("Coin"))
-                    {
-                        trs[j].gameObject.SetActive(flag);
-                    }
-                }
-            }
-        }
-        //for (int i = 0; i < coinSpriteList.Count; i++)
-        //{
-        //    coinSpriteList[i].gameObject.SetActive(flag);
-        //}
-    }
+    //void CoinsActive(bool flag)
+    //{
+    //    for (int i = currentOptiRear; i < currentOptiFront; i++)
+    //    {
+    //        if (LoadFile.GetObjectList[i] != null)
+    //        {
+    //            Transform[] trs = LoadFile.GetObjectList[i].GetComponentsInChildren<Transform>();
+    //            for (int j = 0; j < trs.Length; j++)
+    //            {
+    //                if (trs[j].gameObject.layer == LayerMask.NameToLayer("Coin"))
+    //                {
+    //                    trs[j].gameObject.SetActive(flag);
+    //                }
+    //            }
+    //        }
+    //    }
+    //    //for (int i = 0; i < coinSpriteList.Count; i++)
+    //    //{
+    //    //    coinSpriteList[i].gameObject.SetActive(flag);
+    //    //}
+    //}
 
 	IEnumerator PlayStart()
 	{
@@ -301,62 +325,84 @@ public class StageMgr : MonoBehaviour {
 
 	public void Finish()
 	{
+        isStart = false;
         FinishUI.SetActive(true);
-        if ((isHidden ? 1 : DataMgr.currentRegion.nameList.Count) > getCardCount)
-        {
-            FinishUI.GetComponent<Image>().sprite = GameOver[2];
-            button.gameObject.SetActive(true);
-        }
-        else
+        FinishUI.GetComponent<Image>().sprite = GameOver[1];
+        if (isFinish)
         {
             button2.gameObject.SetActive(true);
         }
+        else // (DataMgr.currentRegion.nameList.Count > getCardCount)
+        {
+            button.gameObject.SetActive(true);
+        }
+       
 	}
 
     public void CardGaugeUp()
     {
         cardGauge++;
 
-        gauge.fillAmount = cardGauge / (float)CardGaugeLimit;
-
-        if (CardGaugeLimit <= cardGauge)
+        if (cardGauge > 250)
         {
-            cardGauge = 0;
-            cardCapture.sprite = cardCaptureSprite[1];
+            currentSpeed = player.GetComponentInParent<Player>().playSpeed = 2.5f;
 
-			cardEffect.SetActive (true);
-			Invoke ("CardEffectOff", 0.2f);
+            LoadFile.Lv3();
+        }
 
-            //카드 생성
-            CardObj.SetActive(true);
-            CardObj.transform.parent = player.transform.parent.Find("Card_" + Random.Range(0, 3));
-			CardObj.transform.localPosition = Vector3.forward * 2;
-            CardObj.transform.localScale = Vector3.one;
-            //>
+        meter[0].sprite = counts[cardGauge % 10];
+        meter[1].sprite = counts[cardGauge / 10 % 10];
+        meter[2].sprite = counts[cardGauge / 100 % 10];
+        meter[3].sprite = counts[cardGauge / 1000];
 
-            CardObj.GetComponentInChildren<Collider>().enabled = false;
+        if (!isFinish)
+        {
+            gauge.fillAmount = cardGauge / (float)CardGaugeLimit;
 
-            StartCoroutine (MovingCard ());
+            if (CardGaugeLimit <= cardGauge)
+            {
+                //cardGauge = 0;
+                //cardCapture.sprite = cardCaptureSprite[1];
 
-            CoinsActive(false);
+                cardEffect.SetActive(true);
+                Invoke("CardEffectOff", 0.2f);
+
+                //카드 생성
+                CardObj.SetActive(true);
+                CardObj.transform.parent = player.transform.Find("Card_Pos");
+                CardObj.transform.localPosition = Vector3.forward;
+                CardObj.transform.localScale = Vector3.one;
+                //>
+                
+                StartCoroutine(MovingCard());
+
+                //CoinsActive(false);
+            }
         }
     }
 
 	IEnumerator MovingCard()
 	{
-		float f = 0.0f;
-		while (true) {
-			yield return null;
-			f += Time.deltaTime;
-			CardObj.transform.localPosition = Vector3.Lerp (Vector3.forward * 2, Vector3.zero, f);
+        //float f = 0.0f;
+        //while (true) {
+        //	yield return null;
+        //	f += Time.deltaTime;
+        //	CardObj.transform.localPosition = Vector3.Lerp (Vector3.forward * 2, Vector3.zero, f);
 
-			if (f >= 1.0f)
-				break;
-		}
+        //	if (f >= 1.0f)
+        //		break;
+        //}
 
-        CardObj.GetComponentInChildren<Collider>().enabled = true;
-        CardObj.transform.localPosition = Vector3.zero;
-	}
+        //      CardObj.GetComponentInChildren<Collider>().enabled = true;
+        //      CardObj.transform.localPosition = Vector3.zero;
+        yield return new WaitForSeconds(0.2f);
+
+        CardObj.transform.SetParent(player.transform.parent.Find("Main Camera/CardDest"));
+        CardObj.transform.GetComponentInChildren<CardItem>().MoveCard();
+
+        player.GetComponentInParent<Player>().PlayerGetCard();
+        CardCapture();
+    }
 
 	void CardEffectOff()
 	{
@@ -365,18 +411,24 @@ public class StageMgr : MonoBehaviour {
 
     public void CardCapture()
     {
-        CoinsActive(true);
+        //CoinsActive(true);
 
-        gauge.fillAmount = 0;
-        cardCapture.sprite = cardCaptureSprite[0];
+        isFinish = true;
+
+        currentSpeed = player.GetComponentInParent<Player>().playSpeed = 2.0f;
+
+        LoadFile.Lv2();
+
+        //gauge.fillAmount = 0;
+        //cardCapture.sprite = cardCaptureSprite[0];
 
         StartCoroutine(CardCaptureCoroutine());
     }
 
     IEnumerator CardCaptureCoroutine()
     {
-        if (getCardCount > 3)
-            yield break;
+        //if (getCardCount > 3)
+        //    yield break;
 
         cardTouchEffectObj.SetActive(true);
         cardTouchEffectObj.transform.position = CardObj.transform.position;
@@ -385,30 +437,32 @@ public class StageMgr : MonoBehaviour {
 
         cardTouchEffectObj.SetActive(false);
 
-        yield return new WaitForSeconds(0.4f);
-        getCards[getCardCount].sprite = getCardsSprite[1];
-        getCards[getCardCount].color = Color.white * 2;
+        cardCapture.sprite = cardCaptureSprite[1];
 
-        yield return new WaitForSeconds(0.2f);
-        getCards[getCardCount].color = Color.white;
+        //yield return new WaitForSeconds(0.4f);
+        //getCards[getCardCount].sprite = getCardsSprite[1];
+        //getCards[getCardCount].color = Color.white * 2;
 
-        getCardCount++;
+        //yield return new WaitForSeconds(0.2f);
+        //getCards[getCardCount].color = Color.white;
+
+        //getCardCount++;
     }
 
-    float goalDistance = 100f;
+    //float goalDistance = 100f;
 
-    public void CalcMeter(float distance)
-    {
-        goalDistance -= distance;
+    //public void CalcMeter(float distance)
+    //{
+    //    goalDistance -= distance;
 
-        if (goalDistance >= 0.0f)
-        {
-            meter[0].sprite = counts[(int)goalDistance % 10];
-            meter[1].sprite = counts[(int)goalDistance / 10 % 10];
-            meter[2].sprite = counts[(int)goalDistance / 100 % 10];
-            meter[3].sprite = counts[(int)goalDistance / 1000];
-        }
-    }
+    //    if (goalDistance >= 0.0f)
+    //    {
+    //        meter[0].sprite = counts[(int)goalDistance % 10];
+    //        meter[1].sprite = counts[(int)goalDistance / 10 % 10];
+    //        meter[2].sprite = counts[(int)goalDistance / 100 % 10];
+    //        meter[3].sprite = counts[(int)goalDistance / 1000];
+    //    }
+    //}
 
     int getCardCounting = 0;
 
@@ -433,25 +487,22 @@ public class StageMgr : MonoBehaviour {
 
     IEnumerator downloadTexture()
     {
-        WWW www = new WWW(isHidden ? "http://theminjoo.einvention.kr/test/test2_f.jpg" : "http://theminjoo.einvention.kr/test/test1_f.jpg");
+        WWW www = new WWW("http://theminjoo.einvention.kr/test/test1_f.jpg");
         
         yield return www;
 
         WWW www2 = new WWW("http://theminjoo.einvention.kr/test/test1_b.jpg");
 
         yield return www2;
+        
+        WWW www3 = new WWW("http://theminjoo.einvention.kr/test/test2_b.jpg");
 
-        if (isHidden)
-        {
-            WWW www3 = new WWW("http://theminjoo.einvention.kr/test/test2_b.jpg");
+        yield return www3;
 
-            yield return www3;
+        Texture2D tempTex = www3.texture;
+        hiddenTex = Sprite.Create(tempTex, new Rect(0, 0, tempTex.width, tempTex.height), new Vector2(0.5f, 0.5f));
 
-            Texture2D tempTex = www3.texture;
-            hiddenTex = Sprite.Create(tempTex, new Rect(0, 0, tempTex.width, tempTex.height), new Vector2(0.5f, 0.5f));
-
-            www3.Dispose();
-        }
+        www3.Dispose();
 
         if (www.error == null && www2.error == null)
         {
@@ -496,27 +547,24 @@ public class StageMgr : MonoBehaviour {
                     break;
                 }
             }
+            
+            yield return new WaitForSeconds(0.5f);
 
-            if (!isHidden)
+            val = 0.0f;
+            Vector3 currentCardPos = vCard.transform.position;
+            Vector3 destCardScale = Vector3.one * 0.5f;
+
+            while (true)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return null;
+                val += Time.deltaTime * 3;
 
-                val = 0.0f;
-                Vector3 currentCardPos = vCard.transform.position;
-                Vector3 destCardScale = Vector3.one * 0.5f;
+                vCard.transform.position = Vector3.Lerp(currentCardPos, cardMovePos_2[getCardCounting].position, val);
+                vCard.transform.localScale = Vector3.Lerp(Vector3.one, destCardScale, val);
 
-                while (true)
+                if (val >= 1.0f)
                 {
-                    yield return null;
-                    val += Time.deltaTime * 3;
-
-                    vCard.transform.position = Vector3.Lerp(currentCardPos, cardMovePos_2[getCardCounting].position, val);
-                    vCard.transform.localScale = Vector3.Lerp(Vector3.one, destCardScale, val);
-
-                    if (val >= 1.0f)
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
 
@@ -527,25 +575,15 @@ public class StageMgr : MonoBehaviour {
         www2.Dispose();
 
         getCardCounting++;
-
-        if (!isHidden)
+        
+        if (/*DataMgr.currentRegion.nameList.Count*/2 > getCardCounting)
         {
-            if (DataMgr.currentRegion.nameList.Count > getCardCounting)
-            {
-                yield return StartCoroutine(downloadTexture());
-            }
+            yield return StartCoroutine(downloadTexture());
         }
 
         yield return new WaitForSeconds(0.8f);
-
-        if (isHidden)
-        {
-            button3.gameObject.SetActive(true);
-        }
-        else
-        {
-            button5.gameObject.SetActive(true);
-        }
+        
+        button5.gameObject.SetActive(true);
 
     }
 

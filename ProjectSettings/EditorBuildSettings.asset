@@ -11,6 +11,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Play.unity
     guid: 22c075f9aff9b4ccaa17beed9c2b2c76
-  - enabled: 1
+  - enabled: 0
     path: Assets/Hidden.unity
     guid: 54b488fb7f21a6c4ab6ca3248cd9b1c6
+  - enabled: 0
+    path: Assets/YoutubeTest2.unity
+    guid: bb55c199c12cf46478dc87ceef1157de
+  - enabled: 0
+    path: Assets/MovieTexture.unity
+    guid: 6fd64808c386c144190be433bff9e8d7

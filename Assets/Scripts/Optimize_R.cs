@@ -18,12 +18,24 @@ public class Optimize_R : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        int val = other.gameObject.name.ToInt();
+        string val = other.gameObject.name;
 
-        StageMgr.currentOptiRear = val;
+        //StageMgr.currentOptiRear = val;
 
-        LoadFile.GetBlockList[val].SetActive(false);
-        if (LoadFile.GetObjectList[val] != null)
-            LoadFile.GetObjectList[val].SetActive(false);
+        other.gameObject.SetActive(false);
+
+        LoadFile.GetBlockList.Remove(other.gameObject);
+        LoadFile.AddBlockPool(other.gameObject);
+
+        GameObject obj = LoadFile.GetObjectList.Find(n => n.name == val);
+
+        if (obj != null)
+        {
+            obj.SetActive(false);
+
+            LoadFile.GetObjectList.Remove(obj);
+            LoadFile.AddObjectPool(obj);
+        }
+        
     }
 }

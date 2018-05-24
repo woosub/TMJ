@@ -26,15 +26,15 @@ public class CardItem : MonoBehaviour {
     void OnEnable()
     {
         isActive = true;
-		if(GetComponent<Animation>().clip != null)
-			GetComponent<Animation> ().Play ();
+		//if(GetComponent<Animation>().clip != null)
+		//	GetComponent<Animation> ().Play ();
     }
 
     void OnDisable()
     {
         isActive = false;
-		if(GetComponent<Animation>().clip != null)
-			GetComponent<Animation> ().Stop ();
+		//if(GetComponent<Animation>().clip != null)
+		//	GetComponent<Animation> ().Stop ();
     }
 
 	// Use this for initialization
@@ -80,21 +80,21 @@ public class CardItem : MonoBehaviour {
         else
         {
 
-            timer += Time.deltaTime;
+            //timer += Time.deltaTime;
 
-            if (timer >= 0.2f)
-            {
-                timer = 0.0f;
+            //if (timer >= 0.2f)
+            //{
+            //    timer = 0.0f;
 
-                cnt++;
+            //    cnt++;
 
-                if (cnt > 3)
-                {
-                    cnt = 0;
-                }
-            }
+            //    if (cnt > 3)
+            //    {
+            //        cnt = 0;
+            //    }
+            //}
 
-            sr.sprite = CardSprite[cnt];
+            //sr.sprite = CardSprite[cnt];
 
         }
     }

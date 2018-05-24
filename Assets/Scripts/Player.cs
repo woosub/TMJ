@@ -22,10 +22,10 @@ public class Player : MonoBehaviour {
 	static Vector3 startPos = new Vector3 (0, 0.98f, -0.59f);
 	static Vector3 startRot = new Vector3 (0, 0, 0);
 
-    [SerializeField]
-    float gamePlaySpeed = 2.0f;
+    //[SerializeField]
+    //float gamePlaySpeed = 2.0f;
 
-	float playSpeed = 2.0f;
+	public float playSpeed = 1.5f;
 
 	Transform control;
 	SpriteRenderer character;
@@ -110,7 +110,7 @@ public class Player : MonoBehaviour {
         SimpleGesture.On4AxisFlickSwipeLeft(SwipeLeft);
         SimpleGesture.On4AxisFlickSwipeRight(SwipeRight);
 
-        playSpeed = gamePlaySpeed;
+        //playSpeed = gamePlaySpeed;
 
 
         coinEffect.SetActive (false);
@@ -196,7 +196,7 @@ public class Player : MonoBehaviour {
 
             if (fallingTimer >= fallingTime)
             {
-                sm.GameOverFunc();
+                sm.Finish();
 
                 //UnityEngine.SceneManagement.SceneManager.LoadScene(1);
             }
@@ -211,7 +211,7 @@ public class Player : MonoBehaviour {
 
             transform.position += Vector3.forward * Time.deltaTime * playSpeed;
 
-            sm.CalcMeter(Time.deltaTime * playSpeed);
+            //sm.CalcMeter(Time.deltaTime * playSpeed);
 
             if (!isMoveline)
             {
@@ -287,7 +287,8 @@ public class Player : MonoBehaviour {
 
                     CancelInvoke("CrashEffect");
 
-                    playSpeed = gamePlaySpeed;
+                    sm.Finish();
+                    //playSpeed = gamePlaySpeed;
                 }
 
             }
@@ -374,8 +375,8 @@ public class Player : MonoBehaviour {
         crashTimer = 0.0f;
 
 		playSpeed = 0.0f;
-        
-		InvokeRepeating ("CrashEffect", 0.0f, 0.1f);
+
+		//InvokeRepeating ("CrashEffect", 0.0f, 0.1f);
 	}
 
 	public void Falling()
@@ -393,16 +394,16 @@ public class Player : MonoBehaviour {
     }
 
 
-	bool crashEffectFlag = false;
+	//bool crashEffectFlag = false;
 
-	void CrashEffect()
-	{
-		playSpeed += 0.02f;
+	//void CrashEffect()
+	//{
+	//	playSpeed += 0.02f;
 
-		crashEffectFlag = !crashEffectFlag;
+	//	crashEffectFlag = !crashEffectFlag;
 
-		character.enabled = crashEffectFlag;
-	}
+	//	character.enabled = crashEffectFlag;
+	//}
 
 
 	void ControlLeft()
