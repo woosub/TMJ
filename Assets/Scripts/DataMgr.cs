@@ -6,6 +6,7 @@ public class DataMgr : MonoBehaviour {
 
 
     public static List<RegionData> regionList = new List<RegionData>();
+    public static List<string> bigRegionList = new List<string>();
     public static RegionData currentRegion;
 
     public static bool isCartoon = false;
@@ -13,15 +14,18 @@ public class DataMgr : MonoBehaviour {
     public static void LoadRegionInfo()
     {
         regionList = new List<RegionData>();
+        bigRegionList = new List<string>();
 
         string text = Resources.Load<TextAsset>("RegionData").text;
 
-        string[] data = text.Split(new string[] { "\n" }, System.StringSplitOptions.None);
+        string tempRegion = string.Empty;
+
+        string[] data = text.Split(new string[] { "#" }, System.StringSplitOptions.None);
         string[] temp;
 
-        for (int i = 0; i < data.Length; i++)
+        for (int i = 1; i < data.Length; i++)
         {
-            temp = data[i].Split(new string[] { "," }, System.StringSplitOptions.None);
+            temp = data[i].Split(new string[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
 
             int cnt = 0;
             RegionData rData = new RegionData();
@@ -37,6 +41,15 @@ public class DataMgr : MonoBehaviour {
                 else if (cnt == 1)
                 {
                     rData.region = temp[cnt];
+                    if (temp[cnt] != tempRegion)
+                    {
+                        tempRegion = temp[cnt];
+                        bigRegionList.Add(temp[cnt]);
+                    }
+                }
+                else if (cnt == 2)
+                {
+                    rData.region2 = temp[cnt];
                 }
                 else
                 {
@@ -62,4 +75,12 @@ public class DataMgr : MonoBehaviour {
 	void Update () {
 		
 	}
+}
+
+public struct RegionData
+{
+    public int index;
+    public string region;
+    public string region2;
+    public List<string> nameList;
 }

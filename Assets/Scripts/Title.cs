@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Title : MonoBehaviour {
 
-	bool isReady = false;
-	bool isShowRegionList = false;
+    bool isReady = false;
+    bool isShowRegionList = false;
 
     [SerializeField]
     GameObject regionListObj2;
 
     [SerializeField]
-	GameObject regionListObj;
+    GameObject regionListObj;
 
-	[SerializeField]
-	GameObject buttonObj;
+    [SerializeField]
+    GameObject buttonObj;
 
     [SerializeField]
     GameObject pressAnyKey;
@@ -32,32 +32,32 @@ public class Title : MonoBehaviour {
 
     bool pressAnyKeyFlag = false;
 
-	const int gap = 100;
-	const int startPos = 200; 
-	const int defaultCnt = 4;
-	const int defaultGap = 50;
-    
+    const int gap = 100;
+    const int startPos = 200;
+    const int defaultCnt = 4;
+    const int defaultGap = 50;
+
     // Use this for initialization
-    IEnumerator Start () {
+    IEnumerator Start() {
         cartoon.gameObject.SetActive(false);
         cartoonBtn.SetActive(false);
 
         cartoonCnt = 0;
 
-        yield return new WaitForSeconds (0.05f);
+        yield return new WaitForSeconds(0.05f);
 
-		isReady = false;
-		isShowRegionList = false;
+        isReady = false;
+        isShowRegionList = false;
 
-		DataMgr.LoadRegionInfo ();
-		SetLoadRegion ();
+        DataMgr.LoadRegionInfo();
+        SetLoadBigRegion();
 
-		yield return new WaitForSeconds (1.0f);
+        yield return new WaitForSeconds(1.0f);
 
-		isReady = true;
+        isReady = true;
 
         InvokeRepeating("PressAnyKey", 0.0f, 0.4f);
-	}
+    }
 
     void PressAnyKey()
     {
@@ -66,27 +66,68 @@ public class Title : MonoBehaviour {
     }
 
 
-    void SetLoadRegion()
-	{
-		List<RegionData> list = DataMgr.regionList;
+    void SetLoadBigRegion()
+    {
+        List<string> list = DataMgr.bigRegionList;
+
+        int firstPos = startPos + (Mathf.Max(defaultCnt, list.Count) - defaultCnt) * defaultGap;
+
+        GameObject button;
+        Transform tr = regionListObj.transform.Find("Viewport").Find("Content");
+
+        tr.GetComponent<RectTransform>().offsetMin =
+            new Vector2(tr.GetComponent<RectTransform>().offsetMin.x
+                , -(gap * (Mathf.Max(defaultCnt, list.Count) - defaultCnt)));
+
+        int testInt = 0;
+        
+        for (int i = 0; i < list.Count; i++)
+        {
+            button = Instantiate(buttonObj);
+
+            button.name = i.ToString();
+
+            button.GetComponentInChildren<Text>().text = list[i];
+            button.transform.SetParent(tr);
+            button.transform.localScale = Vector3.one * 1.5f;
+
+            button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, firstPos - (i * gap));
+
+            button.GetComponent<Button>().onClick.AddListener(delegate {
+                //str = ;
+                SetLoadRegion(testInt++); });
+
+        }
+    }
+
+    public void SetLoadRegion(int idx)
+    {
+        Transform tr = regionListObj.transform.Find("Viewport").Find("Content");
+
+        Button[] btns = tr.GetComponentsInChildren<Button>();
+        for (int i = 0; i < btns.Length; i++)
+        {
+            DestroyImmediate(btns[i].gameObject);
+        }
+
+		List<RegionData> list = DataMgr.regionList.FindAll(n=>n.region == DataMgr.bigRegionList[idx]);
 
 		int firstPos = startPos + (Mathf.Max(defaultCnt, list.Count) - defaultCnt) * defaultGap;
 
 		GameObject button;
-		Transform tr = regionListObj.transform.Find ("Viewport").Find ("Content");
 
 		tr.GetComponent<RectTransform>().offsetMin = 
 			new Vector2(tr.GetComponent<RectTransform>().offsetMin.x
 				, -(gap * (Mathf.Max(defaultCnt, list.Count) - defaultCnt)));
 
-        int testInt = 0;
+        int testInt = list[0].index;
 		 
 		for (int i = 0; i<list.Count; i++) {
 			button = Instantiate (buttonObj);
 
             button.name = i.ToString();
 
-            button.GetComponentInChildren<Text> ().text = list [i].region;
+            button.GetComponentInChildren<Text> ().text = list [i].region2;
 			button.transform.SetParent(tr);
             button.transform.localScale = Vector3.one * 1.5f;
 
