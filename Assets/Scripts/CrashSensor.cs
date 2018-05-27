@@ -25,17 +25,32 @@ public class CrashSensor : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Crash"))
         {
-            p.Crash();
+            if (!p.isResetPlayer)
+            {
+                sm.LifeContol();
+                p.Crash();
+
+                SoundMgr.PlaySound(SoundType.damage);
+            }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Falling"))
         {
-            p.Falling();
+            if (!p.isResetPlayer)
+            {
+                p.Falling();
+            }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Slide"))
         {
             if (!p.GetSlideState())
             {
-                p.Crash();
+                if (!p.isResetPlayer)
+                {
+                    sm.LifeContol();
+                    p.Crash();
+
+                    SoundMgr.PlaySound(SoundType.damage);
+                }
             }
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Coin"))
@@ -44,6 +59,8 @@ public class CrashSensor : MonoBehaviour
             other.GetComponent<Renderer>().enabled = false;//gameObject.SetActive(false);
             other.GetComponent<Collider>().enabled = false;
             p.CoinGetEffect ();
+
+            SoundMgr.PlaySound(SoundType.coin);
             //Destroy(other.gameObject);
         }
         //else if (other.gameObject.layer == LayerMask.NameToLayer("Card"))

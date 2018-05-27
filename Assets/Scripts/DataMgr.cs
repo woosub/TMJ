@@ -64,6 +64,12 @@ public class DataMgr : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        if (FindObjectOfType<DataMgr>() != null)
+        {
+            DestroyImmediate(gameObject);
+            return;
+        }
+
         DontDestroyOnLoad(gameObject);
 
         Application.targetFrameRate = -1;

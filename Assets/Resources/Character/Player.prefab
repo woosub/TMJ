@@ -213,7 +213,7 @@ Transform:
   m_GameObject: {fileID: 1475619412686460}
   m_LocalRotation: {x: 0.18437295, y: -0, z: -0, w: 0.9828564}
   m_LocalPosition: {x: 0, y: -0.058, z: 0.037}
-  m_LocalScale: {x: 0.09073137, y: 0.09073137, z: 0.09073137}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.09073137}
   m_Children: []
   m_Father: {fileID: 4592498320714138}
   m_RootOrder: 1
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1452539e3ed7b4c1eb58e2269e6ce084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlaySpeed: 2
+  playSpeed: 1.5
   runFrameTime: 0.05
   jumpFrameTime: 0.1
   damageFrameTime: 0.05
@@ -573,6 +573,7 @@ MonoBehaviour:
   - {fileID: 21300020, guid: 4165d5cac879e9241aeadf4141b6ee77, type: 3}
   coinEffect: {fileID: 1475619412686460}
   coinEffectTime: 0.02
+  isResetPlayer: 0
 --- !u!212 &212399345087902736
 SpriteRenderer:
   m_ObjectHideFlags: 1

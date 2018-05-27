@@ -14,7 +14,9 @@ public class StageMgr : MonoBehaviour {
     public Button button3; //공약보기
     public Button button4; //Go to Main
     public Button button5; //이어하기
+    public Button button6; //다음카드까기
 
+    bool isNextCardOpen = false;
 
     public GameObject[] block;
 
@@ -105,8 +107,19 @@ public class StageMgr : MonoBehaviour {
 
     GameObject cardTouchEffectObj;
 
+    [SerializeField]
+    Image[] lifeTextures;
+
+    [SerializeField]
+    Sprite[] lifeOnOff;
+
+    [SerializeField]
+    GameObject missionClear;
+
+    public int lifeCount = 0;
+
     int cardGauge = 0;
-    float currentSpeed = 1.5f;
+    public float currentSpeed = 1.5f;
 
     //float playTime = 60f;
 
@@ -117,8 +130,13 @@ public class StageMgr : MonoBehaviour {
         //UnityEngine.SceneManagement.SceneManager.LoadScene (1);
         //vp.enabled = true;
 
+        lifeCount = 2;
+
         FinishUI.SetActive(false);
         button.gameObject.SetActive(false);
+        button2.gameObject.SetActive(false);
+        button3.gameObject.SetActive(false);
+        button4.gameObject.SetActive(false);
         button5.gameObject.SetActive(false);
 
         Background.SetActive(true);
@@ -154,29 +172,58 @@ public class StageMgr : MonoBehaviour {
 
         Background.SetActive(false);
         movie.SetActive(false);
+        FinishUI.SetActive(false);
+        if (player.GetComponentInParent<Player>().isFalling)
+        {
+            ResetPlayer();
+        }
+        else
+        {
+            player.GetComponentInParent<Player>().isCrash = false;
+            player.GetComponentInParent<Player>().ResetPlayer(false);
+        }
     }
 
     public void Restart()
     {
+        lifeCount = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     void Awake()
 	{
-	}
+        lifeCount = 0;
+
+    }
+
+    public void LifeContol()
+    {
+        lifeTextures[lifeCount].sprite = lifeOnOff[1];
+        lifeCount++;
+
+        if (lifeCount >= 3)
+        { 
+            Finish();
+        }
+    }
 
 	// Use this for initialization
 	IEnumerator Start () {
         //DontDestroyOnLoad (gameObject);
         isFinish = false;
+        isOneChance = false;
         CardEffectOff ();
         //goalDistance = 100f;
+
+        lifeCount = 0;
 
         button.gameObject.SetActive (false);
         button2.gameObject.SetActive(false);
         button3.gameObject.SetActive(false);
         button4.gameObject.SetActive(false);
         button5.gameObject.SetActive(false);
+
+        missionClear.SetActive(false);
 
         isStart = false;
 
@@ -195,7 +242,7 @@ public class StageMgr : MonoBehaviour {
         LoadData ();
 
         //StartCardAnimation();
-
+        SoundMgr.PlayBGM();
     }
 	
 	// Update is called once per frame
@@ -323,21 +370,50 @@ public class StageMgr : MonoBehaviour {
         isStart = true;
 	}
 
+    bool isOneChance = false;
+
 	public void Finish()
 	{
         isStart = false;
         FinishUI.SetActive(true);
         FinishUI.GetComponent<Image>().sprite = GameOver[1];
-        if (isFinish)
+        //if (isFinish)
+        //{
+        //    button2.gameObject.SetActive(true);
+        //}
+        //else // (DataMgr.currentRegion.nameList.Count > getCardCount)
+        //{
+        //    button.gameObject.SetActive(true);
+        //}
+        if (isOneChance)
         {
-            button2.gameObject.SetActive(true);
+            if (isFinish)
+            {
+                button2.gameObject.SetActive(true);
+            }
+            else
+            {
+                button.gameObject.SetActive(true);
+                button4.gameObject.SetActive(true);
+
+                button4.GetComponent<RectTransform>().localPosition =
+                    new Vector3(0, -312.53f);
+            }
         }
-        else // (DataMgr.currentRegion.nameList.Count > getCardCount)
+        else
         {
-            button.gameObject.SetActive(true);
+            isOneChance = true;
+            if (isFinish)
+            {
+                button2.gameObject.SetActive(true);
+            }
+            else
+            {
+                button.gameObject.SetActive(true);
+            }
+            button5.gameObject.SetActive(true);
         }
-       
-	}
+    }
 
     public void CardGaugeUp()
     {
@@ -375,6 +451,8 @@ public class StageMgr : MonoBehaviour {
                 //>
                 
                 StartCoroutine(MovingCard());
+
+                SoundMgr.PlaySound(SoundType.card);
 
                 //CoinsActive(false);
             }
@@ -438,6 +516,7 @@ public class StageMgr : MonoBehaviour {
         cardTouchEffectObj.SetActive(false);
 
         cardCapture.sprite = cardCaptureSprite[1];
+        missionClear.SetActive(true);
 
         //yield return new WaitForSeconds(0.4f);
         //getCards[getCardCount].sprite = getCardsSprite[1];
@@ -470,6 +549,7 @@ public class StageMgr : MonoBehaviour {
     {
         FinishUI.SetActive(false);
         button2.gameObject.SetActive(false);
+        button5.gameObject.SetActive(false);
         Background.SetActive(true);
 
         //카드 등장 및 오픈 연출
@@ -487,6 +567,8 @@ public class StageMgr : MonoBehaviour {
 
     IEnumerator downloadTexture()
     {
+        isNextCardOpen = DataMgr.currentRegion.nameList.Count <= getCardCounting + 1;
+
         WWW www = new WWW("http://theminjoo.einvention.kr/test/test1_f.jpg");
         
         yield return www;
@@ -550,24 +632,29 @@ public class StageMgr : MonoBehaviour {
             
             yield return new WaitForSeconds(0.5f);
 
-            val = 0.0f;
-            Vector3 currentCardPos = vCard.transform.position;
-            Vector3 destCardScale = Vector3.one * 0.5f;
+            //val = 0.0f;
+            //Vector3 currentCardPos = vCard.transform.position;
+            //Vector3 destCardScale = Vector3.one * 0.5f;
 
-            while (true)
+            //while (true)
+            //{
+            //    yield return null;
+            //    val += Time.deltaTime * 3;
+
+            //    vCard.transform.position = Vector3.Lerp(currentCardPos, cardMovePos_2[getCardCounting].position, val);
+            //    vCard.transform.localScale = Vector3.Lerp(Vector3.one, destCardScale, val);
+
+            //    if (val >= 1.0f)
+            //    {
+            //        break;
+            //    }
+            //}
+            button3.gameObject.SetActive(true);
+
+            while (!isNextCardOpen)
             {
                 yield return null;
-                val += Time.deltaTime * 3;
-
-                vCard.transform.position = Vector3.Lerp(currentCardPos, cardMovePos_2[getCardCounting].position, val);
-                vCard.transform.localScale = Vector3.Lerp(Vector3.one, destCardScale, val);
-
-                if (val >= 1.0f)
-                {
-                    break;
-                }
             }
-
 
         }
 
@@ -576,15 +663,21 @@ public class StageMgr : MonoBehaviour {
 
         getCardCounting++;
         
-        if (/*DataMgr.currentRegion.nameList.Count*/2 > getCardCounting)
+        if (DataMgr.currentRegion.nameList.Count > getCardCounting)
         {
             yield return StartCoroutine(downloadTexture());
         }
 
         yield return new WaitForSeconds(0.8f);
-        
-        button5.gameObject.SetActive(true);
 
+        //button5.gameObject.SetActive(true);
+        button4.gameObject.SetActive(true);
+    }
+
+    public void NextCardOpenEvent()
+    {
+        isNextCardOpen = true;
+        button6.gameObject.SetActive(false);
     }
 
     public void OpenHiddenTexture()
@@ -626,7 +719,16 @@ public class StageMgr : MonoBehaviour {
 
         yield return new WaitForSeconds(0.5f);
 
-        button4.gameObject.SetActive(true);
+        //button4.gameObject.SetActive(true);
+
+        if (DataMgr.currentRegion.nameList.Count > getCardCounting + 1)
+        {
+            button6.gameObject.SetActive(true);
+        }
+        //else
+        //{
+        //    button4.gameObject.SetActive(true);
+        //}
     }
 
     public void GoToHidden()
@@ -637,5 +739,11 @@ public class StageMgr : MonoBehaviour {
     public void GoToMain()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+    }
+    
+    public void ResetPlayer()
+    {
+        player.GetComponentInParent<Player>().playSpeed = currentSpeed;
+        player.GetComponentInParent<Player>().ResetPlayer(true);
     }
 }

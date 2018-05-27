@@ -13,6 +13,7 @@ public class TestStreaming : MonoBehaviour {
 
     [SerializeField]
     AudioSource source;
+    
 
 	// Use this for initialization
 	void Start () {
@@ -22,13 +23,14 @@ public class TestStreaming : MonoBehaviour {
         //Handheld.
 
         mRenderer = GetComponent<Renderer>();
-        textures = Resources.LoadAll<Texture2D>("jpgs");
+        textures = Resources.LoadAll<Texture2D>(Random.Range(0, 2) == 0 ? "jpgs_1" : "jpgs_2");
 
         
     }
 
     void OnEnable()
     {
+        SoundMgr.StopBGM();
         StartCoroutine(StartFrame());
     }
 
@@ -50,7 +52,7 @@ public class TestStreaming : MonoBehaviour {
             if (sec >= 0.09f)
             {
                 sec = 0.0f;
-                if (frame < 429)
+                if (frame < textures.Length - 1)
                 {
                     frame++;
                 }
@@ -63,18 +65,21 @@ public class TestStreaming : MonoBehaviour {
 
         yield return new WaitForSeconds(0.2f);
 
+
+        SoundMgr.PlayBGM();
         StageMgr sm = FindObjectOfType<StageMgr>();
 
-        if (sm.isFinish)
-        {
+        //if (sm.isFinish)
+        //{
             sm.Continue();
-        }
-        else
-        {
-            sm.Restart();
-        }
+        
+        //}
+        //else
+        //{
+        //    sm.Restart();
+        //}
         //FindObjectOfType<StageMgr>().Restart();
-       // Debug.Log("Finish");
+        // Debug.Log("Finish");
     }
 	
 	// Update is called once per frame

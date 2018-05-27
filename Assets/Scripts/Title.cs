@@ -28,6 +28,15 @@ public class Title : MonoBehaviour {
     [SerializeField]
     Sprite[] cartoonPage;
 
+    [SerializeField]
+    GameObject backButton;
+
+    [SerializeField]
+    Scrollbar scrollbar;
+
+    [SerializeField]
+    GameObject skipButton;
+
     int cartoonCnt = 0;
 
     bool pressAnyKeyFlag = false;
@@ -66,14 +75,28 @@ public class Title : MonoBehaviour {
     }
 
 
-    void SetLoadBigRegion()
+    public void SetLoadBigRegion()
     {
+        backButton.SetActive(false);
+        Transform tr = regionListObj.transform.Find("Viewport").Find("Content");
+
+        Button[] btns = tr.GetComponentsInChildren<Button>();
+        for (int i = 0; i < btns.Length; i++)
+        {
+            DestroyImmediate(btns[i].gameObject);
+        }
+
+        tr.GetComponent<RectTransform>().offsetMin = new Vector2(tr.GetComponent<RectTransform>().offsetMin.x, 260.9599f);
+        tr.GetComponent<RectTransform>().offsetMax = new Vector2(tr.GetComponent<RectTransform>().offsetMax.x, -22.95993f);
+
+        scrollbar.value = 0.0f;
+        scrollbar.size = 1.0f;
+
         List<string> list = DataMgr.bigRegionList;
 
         int firstPos = startPos + (Mathf.Max(defaultCnt, list.Count) - defaultCnt) * defaultGap;
 
         GameObject button;
-        Transform tr = regionListObj.transform.Find("Viewport").Find("Content");
 
         tr.GetComponent<RectTransform>().offsetMin =
             new Vector2(tr.GetComponent<RectTransform>().offsetMin.x
@@ -104,6 +127,7 @@ public class Title : MonoBehaviour {
 
     public void SetLoadRegion(int idx)
     {
+        backButton.SetActive(true);
         Transform tr = regionListObj.transform.Find("Viewport").Find("Content");
 
         Button[] btns = tr.GetComponentsInChildren<Button>();
@@ -112,7 +136,13 @@ public class Title : MonoBehaviour {
             DestroyImmediate(btns[i].gameObject);
         }
 
-		List<RegionData> list = DataMgr.regionList.FindAll(n=>n.region == DataMgr.bigRegionList[idx]);
+        tr.GetComponent<RectTransform>().offsetMin = new Vector2(tr.GetComponent<RectTransform>().offsetMin.x, 260.9599f);
+        tr.GetComponent<RectTransform>().offsetMax = new Vector2(tr.GetComponent<RectTransform>().offsetMax.x, -22.95993f);
+
+        scrollbar.value = 0.0f;
+        scrollbar.size = 1.0f;
+
+        List<RegionData> list = DataMgr.regionList.FindAll(n=>n.region == DataMgr.bigRegionList[idx]);
 
 		int firstPos = startPos + (Mathf.Max(defaultCnt, list.Count) - defaultCnt) * defaultGap;
 
@@ -157,7 +187,7 @@ public class Title : MonoBehaviour {
         }
     }
 
-    void NextScene()
+    public void NextScene()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
@@ -165,7 +195,8 @@ public class Title : MonoBehaviour {
     void PlayCartoon()
     {
         cartoon.gameObject.SetActive(true);
-
+        backButton.SetActive(false);
+        
         NextPage();
     }
 
@@ -188,6 +219,7 @@ public class Title : MonoBehaviour {
 
     void NextButton()
     {
+        skipButton.SetActive(true);
         cartoonBtn.SetActive(true);
     }
 
