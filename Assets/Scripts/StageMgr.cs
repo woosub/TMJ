@@ -28,6 +28,8 @@ public class StageMgr : MonoBehaviour {
 	GameObject player;
     //const int 
 
+    [SerializeField]
+    Texture2D cardBack;
     //[SerializeField]
     //bool isHidden;
 
@@ -421,7 +423,7 @@ public class StageMgr : MonoBehaviour {
 
         if (cardGauge > 250)
         {
-            currentSpeed = player.GetComponentInParent<Player>().playSpeed = 2.5f;
+            currentSpeed = player.GetComponentInParent<Player>().playSpeed = 2.2f;
 
             LoadFile.Lv3();
         }
@@ -493,7 +495,7 @@ public class StageMgr : MonoBehaviour {
 
         isFinish = true;
 
-        currentSpeed = player.GetComponentInParent<Player>().playSpeed = 2.0f;
+        currentSpeed = player.GetComponentInParent<Player>().playSpeed = 1.8f;
 
         LoadFile.Lv2();
 
@@ -569,27 +571,17 @@ public class StageMgr : MonoBehaviour {
     {
         isNextCardOpen = DataMgr.currentRegion.nameList.Count <= getCardCounting + 1;
 
-        WWW www = new WWW("http://theminjoo.einvention.kr/test/test1_f.jpg");
-        
+        string resourceName = DataMgr.currentRegion.nameList[getCardCounting];
+
+        WWW www = new WWW("http://theminjoo.einvention.kr/cardimage/" + resourceName + "_f.png");//test1_f.jpg");
         yield return www;
-
-        WWW www2 = new WWW("http://theminjoo.einvention.kr/test/test1_b.jpg");
-
-        yield return www2;
         
-        WWW www3 = new WWW("http://theminjoo.einvention.kr/test/test2_b.jpg");
-
+        WWW www3 = new WWW("http://theminjoo.einvention.kr/cardimage/" + resourceName + "_b.png");
         yield return www3;
-
-        Texture2D tempTex = www3.texture;
-        hiddenTex = Sprite.Create(tempTex, new Rect(0, 0, tempTex.width, tempTex.height), new Vector2(0.5f, 0.5f));
-
-        www3.Dispose();
-
-        if (www.error == null && www2.error == null)
+        
+        if (www.error == null && www3.error == null)
         {
             Texture2D tex = www.texture;
-            Texture2D tex2 = www2.texture;
             vCard = Instantiate(viewCard);
 
             vCard.transform.SetParent(createCardPos);
@@ -597,7 +589,10 @@ public class StageMgr : MonoBehaviour {
             vCard.transform.position = createCardPos.position;
             vCard.transform.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
 
-            vCard.GetComponent<Image>().sprite = Sprite.Create(tex2, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+            vCard.GetComponent<Image>().sprite = Sprite.Create(cardBack, new Rect(0, 0, cardBack.width, cardBack.height), new Vector2(0.5f, 0.5f));
+
+            Texture2D tempTex = www3.texture;
+            hiddenTex = Sprite.Create(tempTex, new Rect(0, 0, tempTex.width, tempTex.height), new Vector2(0.5f, 0.5f));
 
             yield return new WaitForSeconds(0.5f);
 
@@ -659,7 +654,7 @@ public class StageMgr : MonoBehaviour {
         }
 
         www.Dispose();
-        www2.Dispose();
+        www3.Dispose();
 
         getCardCounting++;
         
@@ -668,10 +663,10 @@ public class StageMgr : MonoBehaviour {
             yield return StartCoroutine(downloadTexture());
         }
 
-        yield return new WaitForSeconds(0.8f);
+       // yield return new WaitForSeconds(0.8f);
 
         //button5.gameObject.SetActive(true);
-        button4.gameObject.SetActive(true);
+        //button4.gameObject.SetActive(true);
     }
 
     public void NextCardOpenEvent()
@@ -725,10 +720,10 @@ public class StageMgr : MonoBehaviour {
         {
             button6.gameObject.SetActive(true);
         }
-        //else
-        //{
-        //    button4.gameObject.SetActive(true);
-        //}
+        else
+        {
+            button4.gameObject.SetActive(true);
+        }
     }
 
     public void GoToHidden()

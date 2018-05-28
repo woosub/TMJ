@@ -362,7 +362,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 10
+  far clip plane: 7
   field of view: 50
   orthographic: 0
   orthographic size: 5
@@ -394,6 +394,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 0875f01bb298e314ea3edff1c934fc35, type: 2}
   m_StaticBatchInfo:
@@ -571,6 +572,8 @@ MonoBehaviour:
   - {fileID: 21300018, guid: 4165d5cac879e9241aeadf4141b6ee77, type: 3}
   - {fileID: 21300022, guid: 4165d5cac879e9241aeadf4141b6ee77, type: 3}
   - {fileID: 21300020, guid: 4165d5cac879e9241aeadf4141b6ee77, type: 3}
+  isCrash: 0
+  isFalling: 0
   coinEffect: {fileID: 1475619412686460}
   coinEffectTime: 0.02
   isResetPlayer: 0
@@ -587,6 +590,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -631,6 +635,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -675,6 +680,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

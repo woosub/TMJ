@@ -25,7 +25,8 @@ public class DataMgr : MonoBehaviour {
 
         for (int i = 1; i < data.Length; i++)
         {
-            temp = data[i].Split(new string[] { "," }, System.StringSplitOptions.RemoveEmptyEntries);
+            data[i] = data[i].Trim();
+            temp = data[i].Split(new string[] { "," }, System.StringSplitOptions.None);
 
             int cnt = 0;
             RegionData rData = new RegionData();
@@ -53,7 +54,10 @@ public class DataMgr : MonoBehaviour {
                 }
                 else
                 {
-                    rData.nameList.Add(temp[cnt]);
+                    if (temp[cnt] != "")
+                    {
+                        rData.nameList.Add(temp[cnt]);
+                    }
                 }
                 cnt++;
             }

@@ -144,31 +144,43 @@ public class Title : MonoBehaviour {
 
         List<RegionData> list = DataMgr.regionList.FindAll(n=>n.region == DataMgr.bigRegionList[idx]);
 
-		int firstPos = startPos + (Mathf.Max(defaultCnt, list.Count) - defaultCnt) * defaultGap;
+        if (list.Count == 1)
+        {
+            Select(list[0].index);
+            backButton.SetActive(false);
 
-		GameObject button;
+            regionListObj.SetActive(false);
+            regionListObj2.SetActive(false);
+        }
+        else
+        {
+            int firstPos = startPos + (Mathf.Max(defaultCnt, list.Count) - defaultCnt) * defaultGap;
 
-		tr.GetComponent<RectTransform>().offsetMin = 
-			new Vector2(tr.GetComponent<RectTransform>().offsetMin.x
-				, -(gap * (Mathf.Max(defaultCnt, list.Count) - defaultCnt)));
+            GameObject button;
 
-        int testInt = list[0].index;
-		 
-		for (int i = 0; i<list.Count; i++) {
-			button = Instantiate (buttonObj);
+            tr.GetComponent<RectTransform>().offsetMin =
+                new Vector2(tr.GetComponent<RectTransform>().offsetMin.x
+                    , -(gap * (Mathf.Max(defaultCnt, list.Count) - defaultCnt)));
 
-            button.name = i.ToString();
+            int testInt = list[0].index;
 
-            button.GetComponentInChildren<Text> ().text = list [i].region2;
-			button.transform.SetParent(tr);
-            button.transform.localScale = Vector3.one * 1.5f;
+            for (int i = 0; i < list.Count; i++)
+            {
+                button = Instantiate(buttonObj);
 
-            button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3 (0, firstPos - (i * gap));
+                button.name = i.ToString();
 
-			int v = testInt++;
-            
-            button.GetComponent<Button>().onClick.AddListener(delegate { Select(v); });
+                button.GetComponentInChildren<Text>().text = list[i].region2;
+                button.transform.SetParent(tr);
+                button.transform.localScale = Vector3.one * 1.5f;
 
+                button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, firstPos - (i * gap));
+
+                int v = testInt++;
+
+                button.GetComponent<Button>().onClick.AddListener(delegate { Select(v); });
+
+            }
         }
 	}
 
