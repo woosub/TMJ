@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -368,9 +368,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.41911763, g: 0.8077081, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.33823532, g: 0.91784996, b: 1, a: 1}
-    m_PressedColor: {r: 0.47794116, g: 0.7407709, b: 1, a: 1}
+    m_NormalColor: {r: 1, g: 0.7371197, b: 0.4044118, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.8133874, b: 0.41176468, a: 1}
+    m_PressedColor: {r: 1, g: 0.79117644, b: 0.47794116, a: 1}
     m_DisabledColor: {r: 0.6237024, g: 0.68296146, b: 0.8235294, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -552,9 +552,9 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.41911763, g: 0.8077081, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.33823532, g: 0.91784996, b: 1, a: 1}
-    m_PressedColor: {r: 0.47794116, g: 0.7407709, b: 1, a: 1}
+    m_NormalColor: {r: 0.99264705, g: 0.59558827, b: 0, a: 1}
+    m_HighlightedColor: {r: 1, g: 0.73529404, b: 0.33823532, a: 1}
+    m_PressedColor: {r: 1, g: 0.81277883, b: 0.47794116, a: 1}
     m_DisabledColor: {r: 0.6237024, g: 0.68296146, b: 0.8235294, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -981,7 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1210,7 +1210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1342,7 +1342,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.41911763, g: 0.8077081, b: 1, a: 1}
+    m_NormalColor: {r: 0.42647058, g: 0.7864098, b: 1, a: 1}
     m_HighlightedColor: {r: 0.33823532, g: 0.91784996, b: 1, a: 1}
     m_PressedColor: {r: 0.47794116, g: 0.7407709, b: 1, a: 1}
     m_DisabledColor: {r: 0.6237024, g: 0.68296146, b: 0.8235294, a: 0.5019608}
