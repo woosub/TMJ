@@ -644,10 +644,10 @@ TextureImporter:
         x: 697
         y: 475
         width: 40
-        height: 63
+        height: 69
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 28, z: 0, w: 30}
+      border: {x: 0, y: 32, z: 0, w: 32}
       outline: []
       physicsShape: []
       tessellationDetail: 0
