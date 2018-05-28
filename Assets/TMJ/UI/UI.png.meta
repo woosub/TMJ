@@ -30,7 +30,7 @@ TextureImporter:
     21300046: Special_On
     21300048: Special_Off
     21300050: Normal_On
-    21300052: UI_0
+    21300052: Box
     21300054: PrssAnyKey
     21300056: black
     21300058: window01
@@ -42,6 +42,10 @@ TextureImporter:
     21300070: needmorecard
     21300072: Cogi_On
     21300074: Cogi_Off
+    21300076: Button01
+    21300078: Button02
+    21300080: UI_1
+    21300082: UI_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -466,34 +470,6 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Special_On
-      rect:
-        serializedVersion: 2
-        x: 837
-        y: 718
-        width: 63
-        height: 83
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Special_Off
-      rect:
-        serializedVersion: 2
-        x: 836
-        y: 621
-        width: 71
-        height: 91
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: Normal_On
       rect:
         serializedVersion: 2
@@ -501,20 +477,6 @@ TextureImporter:
         y: 720
         width: 64
         height: 80
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_0
-      rect:
-        serializedVersion: 2
-        x: 917
-        y: 625
-        width: 64
-        height: 81
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -546,48 +508,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: window01
-      rect:
-        serializedVersion: 2
-        x: 154
-        y: 630
-        width: 140
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 43, y: 43, z: 43, w: 43}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: slide_bar
-      rect:
-        serializedVersion: 2
-        x: 506
-        y: 412
-        width: 129
-        height: 130
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 30, y: 30, z: 30, w: 30}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: button01
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 412
-        width: 133
-        height: 132
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 30, y: 30, z: 30, w: 30}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -656,7 +576,7 @@ TextureImporter:
         width: 96
         height: 101
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -670,8 +590,78 @@ TextureImporter:
         width: 101
         height: 107
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Box
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 656
+        width: 104
+        height: 101
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 39, y: 45, z: 41, w: 45}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button01
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 463
+        width: 77
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Button02
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 463
+        width: 78
+        height: 72
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 30, y: 30, z: 30, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_1
+      rect:
+        serializedVersion: 2
+        x: 697
+        y: 475
+        width: 40
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 28, z: 0, w: 30}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_2
+      rect:
+        serializedVersion: 2
+        x: 740
+        y: 474
+        width: 42
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 28, z: 0, w: 31}
       outline: []
       physicsShape: []
       tessellationDetail: 0
