@@ -46,6 +46,7 @@ TextureImporter:
     21300078: Button02
     21300080: UI_1
     21300082: UI_2
+    21300084: Region
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -235,10 +236,10 @@ TextureImporter:
       name: GAmeOver
       rect:
         serializedVersion: 2
-        x: 200
-        y: 484
-        width: 296
-        height: 61
+        x: 193
+        y: 446
+        width: 326
+        height: 99
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -484,20 +485,6 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: PrssAnyKey
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 434
-        width: 264
-        height: 49
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: black
       rect:
         serializedVersion: 2
@@ -529,10 +516,10 @@ TextureImporter:
       name: Ready
       rect:
         serializedVersion: 2
-        x: 17
-        y: 253
-        width: 215
-        height: 65
+        x: 16
+        y: 310
+        width: 255
+        height: 94
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -543,26 +530,12 @@ TextureImporter:
       name: Go
       rect:
         serializedVersion: 2
-        x: 16
-        y: 195
-        width: 135
-        height: 60
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: needmorecard
-      rect:
-        serializedVersion: 2
-        x: 15
-        y: 153
-        width: 312
-        height: 36
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 27
+        y: 166
+        width: 212
+        height: 127
+      alignment: 9
+      pivot: {x: 0.4910627, y: 0.4999995}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -662,6 +635,20 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 28, z: 0, w: 31}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Region
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 840
+        width: 275
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
