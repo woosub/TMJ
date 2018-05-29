@@ -1421,7 +1421,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Mission Clear
+  m_Text: "\uBBF8\uC158\uC131\uACF5"
 --- !u!222 &741344385
 CanvasRenderer:
   m_ObjectHideFlags: 0
