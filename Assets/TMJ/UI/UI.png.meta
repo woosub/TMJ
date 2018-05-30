@@ -236,10 +236,10 @@ TextureImporter:
       name: GAmeOver
       rect:
         serializedVersion: 2
-        x: 193
-        y: 446
-        width: 326
-        height: 99
+        x: 217
+        y: 450
+        width: 279
+        height: 95
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -517,9 +517,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
-        y: 310
-        width: 255
-        height: 94
+        y: 307
+        width: 235
+        height: 102
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
