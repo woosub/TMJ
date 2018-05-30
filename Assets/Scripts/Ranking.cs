@@ -33,6 +33,7 @@ public class Ranking : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        ViewRank(true);
     }
 	
 	// Update is called once per frame
@@ -184,11 +185,11 @@ public class Ranking : MonoBehaviour {
                 card.transform.SetParent(tr);
 
                 card.transform.localScale = Vector3.one;
-                card.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -31f + (i-2) * -125f);
+                card.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, 550f + (i-2) * -125f);
 
                 string[] temp2 = temp[i].Split(new string[] { ":" }, System.StringSplitOptions.None);
 
-                card.GetComponentInChildren<Text>().text = (cnt++).ToString() + "위 - " + temp2[0] + " / 카드 - " + temp2[2] + "개";
+                card.GetComponentInChildren<Text>().text = (cnt++).ToString() + "위 : " + temp2[0] + " / 수집코인 : " + temp2[2] + "개";
                 //Debug.Log(temp[i]);
             }
 

@@ -167,6 +167,9 @@ public class StageMgr : MonoBehaviour {
         //    DestroyImmediate(trs[i].gameObject);
         //}
 
+        lifeCount = 2;
+        lifeTextures[lifeCount].sprite = lifeOnOff[0];
+
         while (createCardPos.childCount > 0)
         {
             DestroyImmediate(createCardPos.GetChild(0).gameObject);
@@ -402,6 +405,7 @@ public class StageMgr : MonoBehaviour {
                 //    new Vector3(0, -312.53f);
             }
             button.gameObject.SetActive(true);
+            button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -315f);
         }
         else
         {
@@ -409,10 +413,12 @@ public class StageMgr : MonoBehaviour {
             if (isFinish)
             {
                 button2.gameObject.SetActive(true);
+                button.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(0, -315f);
             }
             else
             {
                 button5.gameObject.SetActive(true);
+                button.GetComponent<RectTransform>().anchoredPosition3D += new Vector3(0, 128f);
             }
             button.gameObject.SetActive(true);
         }
