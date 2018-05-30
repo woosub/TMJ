@@ -10,6 +10,8 @@ public class DataMgr : MonoBehaviour {
     public static RegionData currentRegion;
 
     public static bool isCartoon = false;
+
+    static DataMgr dataMgr;
     
     public static void LoadRegionInfo()
     {
@@ -68,15 +70,17 @@ public class DataMgr : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        if (FindObjectOfType<DataMgr>() != null)
+        if (dataMgr != null)
         {
             DestroyImmediate(gameObject);
             return;
         }
 
+        dataMgr = FindObjectOfType<DataMgr>();
+
         DontDestroyOnLoad(gameObject);
 
-        Application.targetFrameRate = -1;
+        Application.targetFrameRate = 30;
 
         Screen.SetResolution(480, 840, false);
         
