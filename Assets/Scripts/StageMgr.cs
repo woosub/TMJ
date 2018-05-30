@@ -120,7 +120,7 @@ public class StageMgr : MonoBehaviour {
 
     public int lifeCount = 0;
 
-    int cardGauge = 0;
+    public int cardGauge = 0;
     public float currentSpeed = 1.5f;
 
     //float playTime = 60f;
@@ -214,9 +214,10 @@ public class StageMgr : MonoBehaviour {
         //DontDestroyOnLoad (gameObject);
         isFinish = false;
         isOneChance = false;
+        GetComponent<Ranking>().isRegiRank = false;
         CardEffectOff ();
         //goalDistance = 100f;
-
+        cardGauge = 0;
         lifeCount = 0;
 
         button.gameObject.SetActive (false);

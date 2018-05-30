@@ -290,6 +290,7 @@ public class Player : MonoBehaviour {
                 if (crashTimer >= crashTime)
                 {
                     isCrash = false;
+                    isResetPlayer = false;
 
                     character.enabled = true;
 
@@ -376,6 +377,7 @@ public class Player : MonoBehaviour {
         if (isCrash)
             return;
 
+        isResetPlayer = true;
         isCrash = true;
 
         character.sprite = etcSprite[0];
