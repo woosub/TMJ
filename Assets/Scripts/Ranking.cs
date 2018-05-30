@@ -124,7 +124,7 @@ public class Ranking : MonoBehaviour {
     {
         WWWForm form = new WWWForm();
         
-        form.AddField("name", Encoding.UTF8.GetString(Encoding.Default.GetBytes(ifName.text)));
+        form.AddField("name", ifName.text);
         form.AddField("email", "");
         form.AddField("card", GetComponent<StageMgr>().cardGauge);
 
