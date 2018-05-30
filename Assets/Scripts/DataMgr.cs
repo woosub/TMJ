@@ -82,7 +82,7 @@ public class DataMgr : MonoBehaviour {
 
         Application.targetFrameRate = 30;
 
-        Screen.SetResolution(480, 840, false);
+        //Screen.SetResolution(480, 840, false);
         
     }
     
