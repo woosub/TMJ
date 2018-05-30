@@ -13,23 +13,48 @@ public class TestStreaming : MonoBehaviour {
 
     [SerializeField]
     AudioSource source;
-    
 
-	// Use this for initialization
-	void Start () {
+    [SerializeField]
+    AudioClip m1;
+
+    [SerializeField]
+    AudioClip m2;
+
+    [SerializeField]
+    AudioClip m3;
+
+
+    // Use this for initialization
+    void Start () {
         //vp.url = "http://www.quirksmode.org/html5/videos/big_buck_bunny.mp4"; //Application.dataPath + "/StreamingAssets/test01.mp4";
         //vp.Play();
         // ((MovieTexture)GetComponent<Renderer>().material.mainTexture).Play();
         //Handheld.
 
         mRenderer = GetComponent<Renderer>();
-        textures = Resources.LoadAll<Texture2D>(Random.Range(0, 2) == 0 ? "jpgs_1" : "jpgs_2");
-
         
     }
 
     void OnEnable()
     {
+        int n = Random.Range(0, 3);
+        textures = Resources.LoadAll<Texture2D>("movie" + (n + 1));
+
+        if (n == 0)
+        {
+            source.clip = m1;
+        }
+        else if (n == 1)
+        {
+            source.clip = m2;
+        }
+        else
+        {
+            source.clip = m3;
+        }
+        source.loop = false;
+
+
         SoundMgr.StopBGM();
         StartCoroutine(StartFrame());
     }
