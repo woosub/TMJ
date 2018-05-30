@@ -33,7 +33,6 @@ public class Ranking : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        ViewRank(true);
     }
 	
 	// Update is called once per frame
