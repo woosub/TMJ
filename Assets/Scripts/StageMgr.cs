@@ -75,7 +75,7 @@ public class StageMgr : MonoBehaviour {
     GameObject CardObj;
 
     [SerializeField]
-    const int CardGaugeLimit = 100;
+    const int CardGaugeLimit = 111;
 
     [SerializeField]
     GameObject Background;
@@ -396,12 +396,12 @@ public class StageMgr : MonoBehaviour {
             }
             else
             {
-                button.gameObject.SetActive(true);
                 button4.gameObject.SetActive(true);
 
-                button4.GetComponent<RectTransform>().localPosition =
-                    new Vector3(0, -312.53f);
+                //button4.GetComponent<RectTransform>().localPosition =
+                //    new Vector3(0, -312.53f);
             }
+            button.gameObject.SetActive(true);
         }
         else
         {
@@ -412,9 +412,9 @@ public class StageMgr : MonoBehaviour {
             }
             else
             {
-                button.gameObject.SetActive(true);
+                button5.gameObject.SetActive(true);
             }
-            button5.gameObject.SetActive(true);
+            button.gameObject.SetActive(true);
         }
     }
 
