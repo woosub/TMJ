@@ -574,10 +574,10 @@ public class StageMgr : MonoBehaviour {
 
         string resourceName = DataMgr.currentRegion.nameList[getCardCounting];
 
-        WWW www = new WWW("http://run.theminjoo.kr/cardimage/" + resourceName + "_f.png");//test1_f.jpg");
+        WWW www = new WWW("http://theminjoo.einvention.kr/cardimage/" + resourceName + "_f.png");//test1_f.jpg");
         yield return www;
         
-        WWW www3 = new WWW("http://run.theminjoo.kr/cardimage/" + resourceName + "_b.png");
+        WWW www3 = new WWW("http://theminjoo.einvention.kr/cardimage/" + resourceName + "_b.png");
         yield return www3;
         
         if (www.error == null && www3.error == null)
