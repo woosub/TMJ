@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
+using System.Text;
 
 public class Ranking : MonoBehaviour {
 
@@ -122,8 +123,8 @@ public class Ranking : MonoBehaviour {
     IEnumerator RegistInfo()
     {
         WWWForm form = new WWWForm();
-
-        form.AddField("name", ifName.text);
+        
+        form.AddField("name", Encoding.UTF8.GetString(Encoding.Default.GetBytes(ifName.text)));
         form.AddField("email", "");
         form.AddField("card", GetComponent<StageMgr>().cardGauge);
 
