@@ -16,15 +16,15 @@ public class Ranking : MonoBehaviour {
 
     [SerializeField]
     InputField ifName;
-
-    [SerializeField]
-    InputField ifMail;
-
+    
     [SerializeField]
     GameObject warning;
 
     [SerializeField]
     GameObject gameLayer;
+
+    [SerializeField]
+    GameObject backPanel;
 
     bool warningFlag = false;
 
@@ -41,6 +41,7 @@ public class Ranking : MonoBehaviour {
 
     public void ViewRank(bool flag)
     {
+        backPanel.SetActive(flag);
         gameLayer.SetActive(!flag);
         regi.SetActive(false);
 
@@ -71,12 +72,14 @@ public class Ranking : MonoBehaviour {
             return;
         }
 
+        backPanel.SetActive(true);
         gameLayer.SetActive(false);
         regi.SetActive(true);
     }
 
     public void BackRegistRank()
     {
+        backPanel.SetActive(false);
         gameLayer.SetActive(true);
         regi.SetActive(false);
     }
@@ -86,10 +89,10 @@ public class Ranking : MonoBehaviour {
         if (warningFlag)
             return;
 
-        if (ifName.text == "" || ifMail.text == "")
+        if (ifName.text == "")
         {
             warningFlag = true;
-            StartCoroutine(warning_("이름과 메일주소를 입력해주세요."));
+            StartCoroutine(warning_("닉네임을 입력해주세요."));
             return;
         }
 
@@ -121,10 +124,10 @@ public class Ranking : MonoBehaviour {
         WWWForm form = new WWWForm();
 
         form.AddField("name", ifName.text);
-        form.AddField("email", ifMail.text);
+        form.AddField("email", "");
         form.AddField("card", GetComponent<StageMgr>().cardGauge);
 
-        using (var w = UnityWebRequest.Post("http://theminjoo.einvention.kr/rank/tmjranking.php", form))
+        using (var w = UnityWebRequest.Post("http://run.theminjoo.kr/rank/tmjranking.php", form))
         {
             yield return w.SendWebRequest();
             if (w.isNetworkError || w.isHttpError)
@@ -151,7 +154,7 @@ public class Ranking : MonoBehaviour {
         //form.AddField("card", 250);
 
         // Create a download object
-        var download = UnityWebRequest.Post("theminjoo.einvention.kr/rank/tmjgetrank.php", form);
+        var download = UnityWebRequest.Post("http://run.theminjoo.kr/rank/tmjgetrank.php", form);
 
         // Wait until the download is done
         yield return download.SendWebRequest();
