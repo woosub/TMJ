@@ -702,10 +702,10 @@ TextureImporter:
       name: UI_4
       rect:
         serializedVersion: 2
-        x: 806
-        y: 718
-        width: 90
-        height: 113
+        x: 814
+        y: 706
+        width: 79
+        height: 93
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
