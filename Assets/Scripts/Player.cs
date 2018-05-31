@@ -107,10 +107,10 @@ public class Player : MonoBehaviour {
     // Use this for initialization
     void Start() {
 
-        SimpleGesture.On4AxisFlickSwipeDown(SwipeDown);
-        SimpleGesture.On4AxisFlickSwipeUp(SwipeUp);
-        SimpleGesture.On4AxisFlickSwipeLeft(SwipeLeft);
-        SimpleGesture.On4AxisFlickSwipeRight(SwipeRight);
+        //SimpleGesture.On4AxisFlickSwipeDown(SwipeDown);
+        //SimpleGesture.On4AxisFlickSwipeUp(SwipeUp);
+        //SimpleGesture.On4AxisFlickSwipeLeft(SwipeLeft);
+        //SimpleGesture.On4AxisFlickSwipeRight(SwipeRight);
 
         //playSpeed = gamePlaySpeed;
 
@@ -129,7 +129,7 @@ public class Player : MonoBehaviour {
 
     }
 
-    public void SwipeDown()
+    public void BtnDown()
     {
         if (!isDown && !isJump)
         {
@@ -142,12 +142,12 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void SwipeUp()
+    public void BtnUp()
     {
         ControlJump();
     }
 
-    public void SwipeLeft()
+    public void BtnLeft()
     {
         if (!isMoveline)
         {
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    public void SwipeRight()
+    public void BtnRight()
     {
         if (!isMoveline)
         {

@@ -80,7 +80,7 @@ public class DataMgr : MonoBehaviour {
 
         DontDestroyOnLoad(gameObject);
 
-        Application.targetFrameRate = 30;
+        Application.targetFrameRate = -1;
 
         //Screen.SetResolution(480, 840, false);
         

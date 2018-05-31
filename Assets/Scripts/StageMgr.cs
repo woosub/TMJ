@@ -361,6 +361,38 @@ public class StageMgr : MonoBehaviour {
     //    //}
     //}
 
+    public void BtnLeft()
+    {
+        if (player != null)
+        {
+            player.GetComponentInParent<Player>().BtnLeft();
+        }
+    }
+
+    public void BtnRight()
+    {
+        if (player != null)
+        {
+            player.GetComponentInParent<Player>().BtnRight();
+        }
+    }
+
+    public void BtnJump()
+    {
+        if (player != null)
+        {
+            player.GetComponentInParent<Player>().BtnUp();
+        }
+    }
+
+    public void BtnSlide()
+    {
+        if (player != null)
+        {
+            player.GetComponentInParent<Player>().BtnDown();
+        }
+    }
+
 	IEnumerator PlayStart()
 	{
 		yield return new WaitForSeconds (0.5f);
@@ -399,7 +431,7 @@ public class StageMgr : MonoBehaviour {
             }
             else
             {
-                button4.gameObject.SetActive(true);
+                //button4.gameObject.SetActive(true);
 
                 //button4.GetComponent<RectTransform>().localPosition =
                 //    new Vector3(0, -312.53f);
