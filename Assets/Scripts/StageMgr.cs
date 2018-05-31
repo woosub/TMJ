@@ -22,7 +22,8 @@ public class StageMgr : MonoBehaviour {
 
 	public static bool isStart;
 
-
+    [SerializeField]
+    GameObject Controller;
 	//List<SpriteRenderer> bgSpriteList = new List<SpriteRenderer> ();
     
 	GameObject player;
@@ -175,6 +176,7 @@ public class StageMgr : MonoBehaviour {
             DestroyImmediate(createCardPos.GetChild(0).gameObject);
         }
 
+        Controller.SetActive(true);
         Background.SetActive(false);
         movie.SetActive(false);
         FinishUI.SetActive(false);
@@ -191,6 +193,7 @@ public class StageMgr : MonoBehaviour {
 
     public void Restart()
     {
+        Controller.SetActive(true);
         lifeCount = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
@@ -198,7 +201,7 @@ public class StageMgr : MonoBehaviour {
     void Awake()
 	{
         lifeCount = 0;
-
+        Controller.SetActive(true);
     }
 
     public void LifeContol()
@@ -413,6 +416,7 @@ public class StageMgr : MonoBehaviour {
 	public void Finish()
 	{
         isStart = false;
+        Controller.SetActive(false);
         FinishUI.SetActive(true);
         FinishUI.GetComponent<Image>().sprite = GameOver[1];
         //if (isFinish)
