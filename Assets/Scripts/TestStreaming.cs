@@ -96,7 +96,14 @@ public class TestStreaming : MonoBehaviour {
 
         //if (sm.isFinish)
         //{
+        if (sm.isRestart)
+        {
+            sm.RestartGo();
+        }
+        else
+        {
             sm.Continue();
+        }
         
         //}
         //else

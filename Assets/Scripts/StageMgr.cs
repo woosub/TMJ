@@ -127,6 +127,8 @@ public class StageMgr : MonoBehaviour {
     //float playTime = 60f;
 
     public bool isFinish = false;
+
+    public bool isRestart = false;
     
 	public void Replay()
 	{
@@ -193,7 +195,22 @@ public class StageMgr : MonoBehaviour {
 
     public void Restart()
     {
-        Controller.SetActive(true);
+        isRestart = true;
+
+        FinishUI.SetActive(false);
+        button.gameObject.SetActive(false);
+        button2.gameObject.SetActive(false);
+        button3.gameObject.SetActive(false);
+        button4.gameObject.SetActive(false);
+        button5.gameObject.SetActive(false);
+
+        Background.SetActive(true);
+        movie.SetActive(true);
+        
+    }
+
+    public void RestartGo()
+    {
         lifeCount = 0;
         UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
@@ -218,6 +235,7 @@ public class StageMgr : MonoBehaviour {
 	// Use this for initialization
 	IEnumerator Start () {
         //DontDestroyOnLoad (gameObject);
+        isRestart = false;
         isFinish = false;
         isOneChance = false;
         GetComponent<Ranking>().isRegiRank = false;
