@@ -51,7 +51,6 @@ TextureImporter:
     21300092: UI_0
     21300094: UI_4
     21300096: UI_5
-    21300098: BT_White
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -724,20 +723,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 26, y: 23, z: 25, w: 27}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: BT_White
-      rect:
-        serializedVersion: 2
-        x: 203
-        y: 776
-        width: 67
-        height: 60
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 18, y: 20, z: 20, w: 16}
       outline: []
       physicsShape: []
       tessellationDetail: 0
